@@ -56,6 +56,15 @@ List keys:
 Delete Keys:
 	gpg --delete-keys keyid
 
+Generate a revocation certificate:
+	gpg --output revoke.asc --gen-revoke KEYNAME
+
+Revoke the key by importing the revocation certificate:
+	gpg --import revoke.asc
+	
+Send the revoked key to a keyserver:
+	gpg --keyserver subkeys.pgp.net --send KEYNAME
+
 Bash Function:
 pgp(){
 case $1 in
