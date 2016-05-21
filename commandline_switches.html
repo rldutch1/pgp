@@ -1,0 +1,1738 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="en">
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+<title>GnuPG Commands - Message Operations</title>
+<base target="_self">
+<LINK rel="STYLESHEET" type="text/css" href="elh.css" media="screen">
+</head>
+<body bgcolor="#ffffff">
+
+<!-- *********** PAGE FRAME *********** -->
+
+<div align="center">
+  <center>
+  <table border="1" cellpadding="5" cellspacing="0" width="95%">
+    <tr>
+      <td width="100%">
+
+<!-- *********** CONTENTS *********** -->
+
+<h1>GnuPG - Message Operations</h1>
+
+<blockquote>
+
+<table border="1" cellpadding="5" cellspacing="0" width="32%">
+  <tr>
+    <td width="100%">
+    
+<table border="0" cellpadding="1" cellspacing="0" width="100%">
+  <tr>
+    <td width="100%" colspan="2" bgcolor="#9900FF"><b><font size="4" color="#FFFFFF">Table of Contents</font></b></td>
+  </tr>
+  <tr>
+    <td width="5%"><b>&nbsp;</b></td>
+    <td width="95%"><b>&nbsp;</b></td>
+  </tr>
+  <tr>
+    <td width="100%" colspan="2" bgcolor="#6699FF"><b><font color="#FFFFFF">Commands</font></b></td>
+  </tr>
+  <tr>
+    <td width="5%"><b>&nbsp;</b></td>
+    <td width="95%"><b>&nbsp;</b></td>
+  </tr>
+  <tr>
+    <td width="5%"></td>
+    <td width="95%"><b><a href="#c-1"><font size="2">Encryption / Decryption</font></a></b></td>
+  </tr>
+  <tr>
+    <td width="5%"></td>
+    <td width="95%"><b><a href="#c-2"><font size="2">Signing / Verifying</font></a></b></td>
+  </tr>
+  <tr>
+    <td width="5%"><b><font size="2">&nbsp;</font></b></td>
+    <td width="95%"><b><font size="2">&nbsp;</font></b></td>
+  </tr>
+  <tr>
+    <td width="100%" colspan="2" bgcolor="#009999"><b><font color="#FFFFFF">Options</font></b></td>
+  </tr>
+  <tr>
+    <td width="5%"><b>&nbsp;</b></td>
+    <td width="95%"><b>&nbsp;</b></td>
+  </tr>
+  <tr>
+    <td width="5%"></td>
+    <td width="95%"><b><a href="#o-1"><font size="2">General</font></a></b></td>
+  </tr>
+  <tr>
+    <td width="5%"></td>
+    <td width="95%"><b><a href="#o-2"><font size="2">Comments &amp; Versions</font></a></b></td>
+  </tr>
+</table>
+
+    
+<table border="0" cellpadding="1" cellspacing="0" width="100%">
+  <tr>
+    <td width="5%"></td>
+    <td width="95%"><b><font size="2"><a href="#o-3">Special</a></font></b></td>
+  </tr>
+  <tr>
+    <td width="5%"></td>
+    <td width="95%"><b><font size="2"><a href="#n-7">&nbsp;</a></font></b></td>
+  </tr>
+  <tr>
+    <td width="100%" colspan="2"><b><font size="2"><a href="gpg-com-0.htm"><i><font color="#FF0000">Return
+      to Index</font></i></a></font></b></td>
+  </tr>
+</table>
+    
+<table border="0" cellpadding="1" cellspacing="0" width="100%">
+</table>
+
+    
+    </td>
+  </tr>
+</table>
+
+
+</blockquote>
+
+<!-- *********** END CONTENTS *********** -->
+
+<!-- *********** TOP NOTES *********** -->
+
+        <div align="center">
+          <table border="1" cellpadding="5" cellspacing="0" width="100%">
+            <tr>
+              <td width="100%">&nbsp;
+
+        <div align="center">
+          <table border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tr>
+              <td width="98%"><font size="2">GPG is the main program
+                for the GnuPG system.<br>
+                &nbsp;<br>
+                This man page only lists the commands and options available.  For
+                more verbose documentation get the GNU Privacy Handbook (GPH) or one of
+                the other documents at <a href="http://www.gnupg.org/documentation/"><b> http://www.gnupg.org/documentation/</b></a>.<br>
+                &nbsp;
+                <br>
+                Please remember that option parsing stops as soon as a non
+                option is encountered, you can explicitly stop option parsing by
+                using the special option &quot;--&quot;.</font></td>
+              <td width="2%"><font size="2">&nbsp;</font></td>
+            </tr>
+          </table>
+        </div>
+
+              </td>
+            </tr>
+          </table>
+        </div>
+
+<!-- *********** END TOP NOTES *********** -->
+
+<!-- *********** COMMANDS *********** -->
+
+        &nbsp;
+
+        <div align="center">
+          <table border="1" cellpadding="5" cellspacing="0" width="100%">
+            <tr>
+              <td width="100%">
+              
+        <div align="center">
+          <table border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tr>
+              <td width="100%" valign="bottom" bgcolor="#6699FF"><p><b><font color="#FFFFFF" size="6">Commands</font></b></p></td>
+            </tr>
+          </table>
+        </div>
+        
+              </td>
+            </tr>
+          </table>
+        </div>
+
+&nbsp;
+
+        <div align="center">
+          <table border="1" cellpadding="5" cellspacing="0" width="100%">
+            <tr>
+              <td width="100%">&nbsp;
+
+        <div align="center">
+          <table border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tr>
+              <td width="98%"><font size="2">GPG recognizes these commands:</font></td>
+              <td width="2%"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="98%"><font size="2">&nbsp;</font></td>
+              <td width="2%"><font size="2">&nbsp;</font></td>
+            </tr>
+          </table>
+        </div>
+
+              </td>
+            </tr>
+          </table>
+        </div>
+
+<!-- *********** END COMMANDS *********** -->
+
+<!-- *********** TABLE 1*********** -->
+
+        &nbsp;
+
+        <div align="center">
+          <table border="1" cellpadding="5" cellspacing="0" width="100%">
+            <tr>
+              <td width="100%">&nbsp;
+
+        <div align="center">
+          <table border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tr>
+              <td width="7%" colspan="2" valign="top">
+                <p><a name="c-1"><b><font size="4">Encryption / Decryption</font></b></a></p>
+              </td>
+              <td width="36%" colspan="2" valign="top"><font size="2"><b>(<a href="#o-1">Options</a>
+                | <a href="#o-3">Options</a> | <a href="gpg-com-3.htm#o-1">Options</a>)</b></font></td>
+              <td width="17%" valign="top">&nbsp;</td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" rowspan="2" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><b><font size="3"><a name="encrypt"></a>-e,
+                --encrypt&nbsp;</font></b></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><b><i><a href="gpg-com-4.htm#1-1"><font size="2">Example</font></a><font size="2">
+                | <a href="gpg-com-4.htm#3-1">Example</a> | <a href="gpg-com-4.htm#4-17c">Example</a></font></i></b></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="22%" colspan="4" valign="top"><font size="2">Encrypt data. This
+                option may be combined with <a href="#sign"><b>--sign</b></a>.</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" rowspan="2" valign="top"><font size="2">&nbsp;<img border="0" src="107an.gif" width="54" height="29"></font></td>
+              <td width="23%" valign="top"><b><font size="3"><a name="encrypt-files"></a>--encrypt-files
+                <i>files</i></font></b></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><b><i><font size="2">&nbsp;</font></i></b></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="22%" colspan="4" valign="top"><font size="2">This is a special version of the
+                <a href="#encrypt"><b> --encrypt</b></a> command. The command expects the files to be encrypted either on the command line or reads the filenames from stdin; each name must be on separate line. The command is intended for a quick encryption of multiple files.</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" rowspan="2" valign="top">&nbsp;<img border="0" src="107u.gif" width="54" height="33"></td>
+              <td width="23%" valign="top"><b><font size="3"><a name="symmetric"></a>-c,
+                --symmetric</font></b></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2"><b><i><a href="gpg-com-4.htm#1-1a">Example</a></i></b></font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="22%" colspan="4" valign="top"><font size="2">Encrypt with symmetric
+                cipher only. This command asks for a passphrase.&nbsp;(May also
+                be combined with <a href="#sign"><b>--sign</b></a> -- see <b><a href="http://lists.gnupg.org/pipermail/gnupg-announce/2002q2/000251.html">GnuPG
+                1.0.7 released</a></b>.)</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" rowspan="2" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><b><font size="3"><a name="decrypt"></a>--decrypt <i>file</i></font></b></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2"><b><i><a href="gpg-com-4.htm#1-2">Example</a>
+                | <a href="gpg-com-4.htm#2-4">Example</a> | <a href="gpg-com-4.htm#3-2">Example</a></i></b></font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="22%" colspan="4" valign="top"><font size="2">Decrypt <i>file</i> (or
+                stdin if no file is specified) and write it to stdout (or the
+                file specified with <a href="#output"><b>--output</b></a>). If
+                the decrypted file is signed, the signature is also verified.
+                This command differs from the default operation, as it never
+                writes to the filename which is included in the file and it
+                rejects files which don't begin with an encrypted message.&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" rowspan="2" valign="top"><font size="2">&nbsp;<img border="0" src="107an.gif" width="54" height="29"></font></td>
+              <td width="23%" valign="top"><b><font size="3">--decrypt-files <i>files</i></font></b></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><b><i><font size="2">&nbsp;</font></i></b></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="22%" colspan="4" valign="top"><font size="2">The same as <a href="#encrypt-files"><b> --encrypt-files</b></a> with the difference that files will be decrypted. The syntax or the filenames is the same.</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+          </table>
+        </div>
+
+              </td>
+            </tr>
+          </table>
+        </div>
+
+<!-- *********** END TABLE 1*********** -->
+
+<!-- *********** TABLE 2*********** -->
+
+        &nbsp;
+
+        <div align="center">
+          <table border="1" cellpadding="5" cellspacing="0" width="100%">
+            <tr>
+              <td width="100%">&nbsp;
+
+        <div align="center">
+          <table border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tr>
+              <td width="7%" colspan="2" valign="top">
+                <p><a name="c-2"><font size="4"><b>Signing / Verifying</b></font></a></p>
+              </td>
+              <td width="36%" colspan="2" valign="top"><font size="2"><b>(<a href="#o-1">Options</a>
+                | <a href="#o-2">Options</a> | <a href="#o-3">Options</a> | <a href="gpg-com-3.htm#o-1">Options</a>)</b></font></td>
+              <td width="17%" valign="top">&nbsp;</td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" rowspan="2" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><b><font size="3"><a name="sign"></a>-s, --sign</font></b></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2"><b><i><a href="gpg-com-4.htm#2-1">Example</a></i></b></font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;<img border="0" src="107u.gif" width="54" height="33"></font></td>
+              <td width="22%" colspan="4" valign="top"><font size="2">Make a signature. This
+                command may be combined with <a href="#encrypt"><b>--encrypt</b></a>.&nbsp;(May
+                also be combined with -<a href="#symmetric"><b>-symmetric</b></a>
+                -- -- see <b><a href="http://lists.gnupg.org/pipermail/gnupg-announce/2002q2/000251.html">GnuPG
+                1.0.7 released</a></b>.)</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" rowspan="2" valign="top">&nbsp;</td>
+              <td width="23%" valign="top"><b><font size="3"><a name="clearsign"></a>--clearsign</font></b></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2"><b><i><a href="gpg-com-4.htm#2-2">Example</a></i></b></font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="22%" colspan="4" valign="top"><font size="2">Make a clear text
+                signature.&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" rowspan="2" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><b><font size="3"><a name="detach-sign"></a>-b,
+                --detach-sign</font></b></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2"><b><i><a href="gpg-com-4.htm#2-3">Example</a></i></b></font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="22%" colspan="4" valign="top"><font size="2">Make a detached
+                signature.&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" rowspan="2" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><b><font size="3"><a name="verify"></a>--verify <i>sigfile
+                signed_files</i></font></b></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2"><b><i><a href="gpg-com-4.htm#2-5">Example</a></i></b></font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="22%" colspan="4" valign="top"><font size="2">Assume that <i>sigfile </i>is
+                a signature and verify it without generating any output. With no
+                arguments, the signature packet is read from stdin. If only a <i>sigfile</i>
+                is given, it may be a complete signature or a detached
+                signature, in which case the signed stuff is expected in a file
+                without the &quot;.sig&quot; or &quot;.asc&quot; extension. With
+                more than 1 argument, the first should be a detached signature
+                and the remaining files are the signed stuff. To read the signed
+                stuff from stdin, use <i><b>-</b></i> as the second filename.
+                For security reasons a detached signature cannot read the signed
+                material from stdin without denoting it in the above way.&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" rowspan="2" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><b><font size="3">--verify-files <i>files</i></font></b></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="22%" colspan="4" valign="top"><font size="2">This is a special
+                version of the <a href="#verify"><b>--verify</b></a> command
+                which does not work with detached signatures. The command
+                expects the files to be verified either on the command line or
+                reads the filenames from stdin; each name must be on separate
+                line. The command is intended for quick checking of many files.</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+          </table>
+        </div>
+
+              </td>
+            </tr>
+          </table>
+        </div>
+
+<!-- *********** END TABLE 2*********** -->
+
+<!-- *********** OPTIONS *********** -->
+
+        &nbsp;
+
+        <div align="center">
+          <table border="1" cellpadding="5" cellspacing="0" width="100%">
+            <tr>
+              <td width="100%">
+              
+        <div align="center">
+          <table border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tr>
+              <td width="100%" valign="bottom" bgcolor="#009999"><p><b><font color="#FFFFFF" size="6">Options</font></b></p></td>
+            </tr>
+          </table>
+        </div>
+        
+              </td>
+            </tr>
+          </table>
+        </div>
+
+&nbsp;
+
+        <div align="center">
+          <table border="1" cellpadding="5" cellspacing="0" width="100%">
+            <tr>
+              <td width="100%">&nbsp;
+
+        <div align="center">
+          <table border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tr>
+              <td width="98%"><font size="2">Starting with <b> GnuPG 1.1.92</b>
+                (incl. GnuPG 1.2.1, 1.2.0 and 1.1.92), long options can  be  put  in  an  options  file  (default "~/.gnupg/gpg.conf").
+                In GnuPG versions up through <b>GnuPG 1.1.91</b> (incl. 1.0.6,
+                1.0.7, and 1.1.91), long options can be put in an &quot;old
+                style&quot; configuration file (default &quot;~/.gnupg/options&quot;).&nbsp;</font>
+                <p><font size="2">
+                Short option names will not work -- for example, <a href="#armor"><b>armor</b></a> is a valid  option  for  the  options file,  while
+                <b><a href="#armor">a</a></b>  is not. Do not
+                write the 2 dashes, but simply the name of the option and any
+                required arguments. Lines with a hash as the first
+                non-white-space character are ignored. Commands may be put in
+                this file too, but that does not make sense.<br>
+                <br>
+                GPG recognizes these options:&nbsp;</font></p>
+              </td>
+              <td width="2%"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="98%"><font size="2">&nbsp;</font></td>
+              <td width="2%"><font size="2">&nbsp;</font></td>
+            </tr>
+          </table>
+        </div>
+
+              </td>
+            </tr>
+          </table>
+        </div>
+
+<!-- *********** END OPTIONS *********** -->
+
+<!-- *********** TABLE 3*********** -->
+
+        &nbsp;
+
+        <div align="center">
+          <table border="1" cellpadding="5" cellspacing="0" width="100%">
+            <tr>
+              <td width="100%">&nbsp;
+
+        <div align="center">
+          <table border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tr>
+              <td width="7%" colspan="2" valign="top">
+                <p><a name="o-1"><font size="4"><b>General</b></font></a></p>
+              </td>
+              <td width="5%" valign="top">&nbsp;</td>
+              <td width="31%" valign="top">&nbsp;</td>
+              <td width="17%" valign="top">&nbsp;</td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" rowspan="2" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><b><font size="3"><a name="armor"></a>-a, --armor</font></b></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="22%" colspan="4" valign="top"><font size="2">Create ASCII armored
+                output.</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" rowspan="2" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><b><font size="3">--no-armor</font></b></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2"><b>&nbsp;</b></font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="22%" colspan="4" valign="top"><font size="2">Assume the input data
+                is not in ASCII armored format.</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" rowspan="2" valign="top">&nbsp;</td>
+              <td width="23%" valign="top"><font size="3"><b>-t, --textmode</b></font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="22%" colspan="4" valign="top"><font size="2">Use canonical text
+                mode. If -t (but not --textmode) is used together with armoring
+                and signing, this enables clearsigned messages. This kludge is
+                needed for PGP compatibility; normally you would use <a href="#sign"><b>--sign</b></a>
+                or <a href="#clearsign"><b>--clearsign</b></a> to selected the
+                type of the signature.</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" rowspan="2" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><b><font size="3"><a name="output"></a>-o,
+                --output <i>file</i></font></b></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="22%" colspan="4" valign="top"><font size="2">Write output to <i>file</i>.</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" rowspan="2" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><b><font size="3"><a name="local-user"></a>-u,
+                --local-user <i>name</i></font></b></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="22%" colspan="4" valign="top"><font size="2">Use <i>name</i> as the
+                user ID to sign. This option is silently ignored for the list
+                commands, so that it can be used in an options file.</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" rowspan="2" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><b><font size="3"><a name="recipient"></a>-r,
+                --recipient <i>name</i></font></b></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="22%" colspan="4" valign="top"><font size="2">Encrypt for user id <i>name</i>.
+                If this option is not specified, GnuPG asks for the user-id
+                unless <a href="#default-recipient"><b>--default-recipient</b></a>
+                is given.</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" rowspan="2" valign="top"><font size="2">&nbsp;<img border="0" src="1190n.gif" width="54" height="30"></font></td>
+              <td width="23%" valign="top"><b><font size="3">--group <i>name=value</i></font></b></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="22%" colspan="4" valign="top"><font size="2">Sets up a name group, which is similar to aliases in email programs.  Any time the group name is a receipient
+                (<a href="#recipient"><b>-r</b></a> or <a href="#recipient"><b>--recipient</b></a>), it will be expanded to the values specified.&nbsp;<br>
+                &nbsp;<br>
+                The values are key IDs or fingerprints, but any key description is accepted. Note that a value with spaces in it will be treated as two different values. Note also there is only one level of expansion -- you cannot make
+                a group that points to another group.</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" rowspan="2" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><b><font size="3"><a name="default-recipient"></a>--default-recipient
+                <i>name</i></font></b></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="22%" colspan="4" valign="top"><font size="2">Use <i>name</i> as
+                default recipient if option <b><a href="#recipient">--recipient</a></b>
+                is not used and don't ask if this is a valid one. <i>name</i>
+                must be non-empty.</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" rowspan="2" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><b><font size="3"><a name="default-recipient-self"></a>--default-recipient-self</font></b></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="22%" colspan="4" valign="top"><font size="2">Use the default key as
+                default recipient if option <a href="#recipient"><b>--recipient</b></a>
+                is not used and don't ask if this is a valid one. The default
+                key is the first one from the secret keyring or the one set with
+                <a href="#default-key"><b>--default-key</b></a>.</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" rowspan="2" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><b><font size="3">--no-default-recipient</font></b></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="22%" colspan="4" valign="top"><font size="2">Reset <a href="#default-recipient"><b>--default-recipient</b></a>
+                and <b><a href="#default-recipient-self">--default-recipient-self</a></b>.</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" rowspan="2" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><b><font size="3"><a name="default-key"></a>--default-key
+                <i>name</i></font></b></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="22%" colspan="4" valign="top"><font size="2">Use <i>name</i> as
+                default user ID for signatures. If this is not used the default
+                user ID is the first user ID found in the secret keyring.</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" rowspan="2" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><b><font size="3"><a name="encrypt-to"></a>--encrypt-to
+                <i>name</i></font></b></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2"><b><i><a href="gpg-com-4.htm#1-3">Example</a></i></b></font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="22%" colspan="4" valign="top"><font size="2">Same as <b><a href="#recipient">--recipient</a></b>
+                but this one is intended for use in the options file and may be
+                used with your own user-id as an &quot;encrypt-to-self.&quot;
+                These keys are only used when there are other recipients given
+                either by use of <b><a href="#recipient">--recipient</a></b> or
+                by the asked user id. No trust checking is performed for these
+                user ids and even disabled keys can be used.&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" rowspan="2" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><b><font size="3">--no-encrypt-to</font></b></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="22%" colspan="4" valign="top"><font size="2">Disable the use of all <b><a href="#encrypt-to">--encrypt-to</a></b>
+                keys.&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+          </table>
+        </div>
+
+              </td>
+            </tr>
+          </table>
+        </div>
+
+<!-- *********** END TABLE 3*********** -->
+
+<!-- *********** TABLE 4*********** -->
+
+        &nbsp;
+
+        <div align="center">
+          <table border="1" cellpadding="5" cellspacing="0" width="100%">
+            <tr>
+              <td width="100%">&nbsp;
+
+        <div align="center">
+          <table border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tr>
+              <td width="7%" colspan="2" valign="top">
+                <p><a name="o-2"><font size="4"><b>Comments &amp; Versions</b></font></a></p>
+              </td>
+              <td width="5%" valign="top">&nbsp;</td>
+              <td width="31%" valign="top">&nbsp;</td>
+              <td width="17%" valign="top">&nbsp;</td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" rowspan="2" valign="top"><font size="2">&nbsp;</font><img border="0" src="107u.gif" width="54" height="33"></td>
+              <td width="23%" valign="top"><b><font size="3"><a name="comment"></a>--comment <i>string</i></font></b></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="22%" colspan="4" valign="top"><font size="2">Use <i>string</i> as
+                comment string in clear text signatures. The default is not to
+                write a comment string.</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" rowspan="2" valign="top">&nbsp;<img border="0" src="107u.gif" width="54" height="33"></td>
+              <td width="23%" valign="top"><b><font size="3">--default-comment</font></b></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="22%" colspan="4" valign="top"><font size="2">Force to write the
+                standard comment string in clear text signatures. Use this to
+                overwrite a <a href="#comment"><b>--comment</b></a> from a
+                config file. This option is now obsolete because there is no
+                default comment string anymore.</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" rowspan="2" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><b><font size="3"><a name="no-version"></a>--no-version</font></b></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="22%" colspan="4" valign="top"><font size="2">Omit the version string
+                in clear text signatures.</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" rowspan="2" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><b><font size="3">--emit-version</font></b></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="22%" colspan="4" valign="top"><font size="2">Force to write the
+                version string in clear text signatures. Use this to overwrite a
+                previous <b><a href="#no-version">--no-version</a></b> from a
+                config file.</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+          </table>
+        </div>
+
+              </td>
+            </tr>
+          </table>
+        </div>
+
+<!-- *********** END TABLE 4*********** -->
+
+<!-- *********** TABLE 5*********** -->
+
+        &nbsp;
+
+        <div align="center">
+          <table border="1" cellpadding="5" cellspacing="0" width="100%">
+            <tr>
+              <td width="100%">&nbsp;
+
+        <div align="center">
+          <table border="0" cellpadding="0" cellspacing="0" width="100%">
+            <tr>
+              <td width="7%" colspan="2" valign="top">
+                <p><a name="o-3"><font size="4"><b>Special</b></font></a></p>
+              </td>
+              <td width="5%" valign="top">&nbsp;</td>
+              <td width="31%" valign="top">&nbsp;</td>
+              <td width="17%" valign="top">&nbsp;</td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" rowspan="2" valign="top"><font size="2">&nbsp;<img border="0" src="107n.gif" width="54" height="29"></font></td>
+              <td width="23%" valign="top"><b><font size="3"><a name="for-your-eyes-only"></a>--for-your-eyes-only</font></b></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="22%" colspan="4" valign="top"><font size="2">Set the &quot;for your
+                eyes only&quot; flag in the message. This causes GnuPG to refuse
+                to save the file unless the <a href="#output"><b>--output</b></a>
+                option is given, and PGP to use the &quot;secure viewer&quot;
+                with a Tempest-resistant font to display the message. This
+                option overrides <a href="#set-filename"><b>--set-filename</b></a>.</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" rowspan="2" valign="top">&nbsp;<font size="2"><img border="0" src="107n.gif" width="54" height="29"></font></td>
+              <td width="23%" valign="top"><b><font size="3">--no-for-your-eyes-only</font></b></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="22%" colspan="4" valign="top"><font size="2">Resets the <a href="#for-your-eyes-only"><b>--for-your-eyes-only</b></a>
+                flag.</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" rowspan="2" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="3"><b>-z <i>n, </i> --compress <i>n</i></b></font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="22%" colspan="4" valign="top"><font size="2">Set compression level
+                to <i>n</i>. A value of 0 for <i>n</i> disables compression.
+                Default is to use the default compression level of zlib
+                (normally 6).</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" rowspan="2" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><b><font size="3">--skip-verify</font></b></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="22%" colspan="4" valign="top"><font size="2">Skip the signature
+                verification step. This may be used to make the decryption
+                faster if the signature verification is not needed.</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" rowspan="2" valign="top"><font size="2">&nbsp;</font><img border="0" src="107n.gif" width="54" height="29"></td>
+              <td width="23%" valign="top"><b><font size="3"><a name="ask-sig-expire"></a>--ask-sig-expire</font></b></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="22%" colspan="4" valign="top"><font size="2">When making a data
+                signature, prompt for an expiration time. If this option is not
+                specified, the expiration time is &quot;never.&quot;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" rowspan="2" valign="top"><font size="2">&nbsp;</font><img border="0" src="107n.gif" width="54" height="29"></td>
+              <td width="23%" valign="top"><b><font size="3">--no-ask-sig-expire</font></b></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="22%" colspan="4" valign="top"><font size="2">Resets the <a href="#ask-sig-expire"><b>--ask-sig-expire</b></a>
+                option.</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" rowspan="2" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><b><font size="3"><a name="throw-keyid"></a>--throw-keyid</font></b></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="22%" colspan="4" valign="top"><font size="2">Do not put the keyid
+                into encrypted packets. This option hides the receiver of the
+                message and is a countermeasure against traffic analysis. It may
+                slow down the decryption process because all available secret
+                keys are tried.</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" rowspan="2" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><b><font size="3">--try-all-secrets</font></b></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="22%" colspan="4" valign="top"><font size="2">Don't look at the key
+                ID as stored in the message but try all secret keys in turn to
+                find the right decryption key. This option forces the behaviour
+                as used by anonymous recipients (created by using <b><a href="#throw-keyid">--throw-keyid</a></b>)
+                and might come handy in case where an encrypted message contains
+                a bogus key ID.</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" rowspan="2" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="28%" valign="top" colspan="2"><font size="3"><b>-N, --notation-data <i>name</i>=<i>value</i></b></font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="22%" colspan="4" valign="top"><font size="2">Put the <i>name</i> <i>value</i>
+                pair into the signature as notation data. <i>Name</i> must
+                consist only of alphanumeric characters, digits or the
+                underscore; the first character must not be a digit. <i>Value</i>
+                may be any printable string; it will be encoded in UTF8, so you
+                should check that your <a href="gpg-com-3.htm#charset"><b>--charset</b></a>
+                is set correctly. If you prefix name with an exclamation mark,
+                the notation data will be flagged as critical
+                (rfc2440:5.2.3.15).</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" rowspan="2" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><b><font size="3">--not-dash-escaped</font></b></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="22%" colspan="4" valign="top"><font size="2">This option changes the
+                behavior of cleartext signatures so that they can be used for
+                patch files. You should not send such an armored file via email
+                because all spaces and line endings are hashed too. You can not
+                use this option for data which has 5 dashes at the beginning of
+                a line, patch files don't have this. A special armor header line
+                tells GnuPG about this cleartext signature option.</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" rowspan="2" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><b><font size="3">--escape-from-lines</font></b></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="22%" colspan="4" valign="top"><font size="2">Because some mailers
+                change lines starting with &quot;From &quot; to &quot;&lt;From
+                &quot; it is good to handle such lines in a special way when
+                creating cleartext signatures. All other PGP versions do it this
+                way too. This option is not enabled by default because it would
+                violate rfc2440.&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" rowspan="2" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><b><font size="3"><a name="set-filename"></a>--set-filename
+                <i>string</i></font></b></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="22%" colspan="4" valign="top"><font size="2">Use <i>string</i> as
+                the name of file which is stored in messages.</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" rowspan="2" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="3"><b>--use-embedded-filename</b></font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="22%" colspan="4" valign="top"><font size="2">Try to create a file
+                with a name as embedded in the data. This can be a dangerous
+                option as it allows to overwrite files.&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" rowspan="2" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><b><font size="3">--enable-special-filenames</font></b></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="22%" colspan="4" valign="top"><font size="2">This options enables a
+                mode in which filenames of the form &quot;-&amp;n,&quot; where n
+                is a non-negative decimal number, refer to the file descriptor n
+                and not to a file with that name.&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+            <tr>
+              <td width="7%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="5%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="31%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="23%" valign="top"><font size="2">&nbsp;</font></td>
+              <td width="2%" valign="top"><font size="2">&nbsp;</font></td>
+            </tr>
+          </table>
+        </div>
+
+              </td>
+            </tr>
+          </table>
+        </div>
+
+<!-- *********** END TABLE 5*********** -->
+
+<!-- *********** BOTTOM NOTES & INFO*********** -->
+
+        <p align="center"><b><span style="LAYOUT-GRID-MODE: line"><a href="http://www.spywarewarrior.com/uiuc/main.htm"><font size="2">Home</font>
+        <font color="#008000" size="2">[frames]</font></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.spywarewarrior.com/uiuc/main-nf.htm"><font size="2">Home</font>
+        <font color="#008000" size="2">[no frames]</font></a></span></b></p>
+        <p align="center"><font size="1"><b><i>© 2000, 2001, 2002 Eric L. Howes
+        (<a href="mailto:eburger68@myrealbox.com">eburger68@myrealbox.com</a>)</i></b></font></td>
+    </tr>
+  </table>
+  </center>
+</div>
+
+<!-- *********** END PAGE FRAME *********** -->
+
+</body>
+
+</html>
