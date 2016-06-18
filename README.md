@@ -13,7 +13,8 @@ Send key to specific key server:
 Export ascii armored key:
 	gpg --export --armor jqdoe@example.com > jqdoe-pubkey.asc
 	gpg --export-secret-keys --armor jqdoe@example.com > jqdoe-privkey.asc
-
+	Use a double greater than symbol to export both public and private to the same file ">>".
+	
 Encrypt ascii file: 
 	gpg -a -e filename
 
@@ -40,6 +41,12 @@ Password encrypt a file:
 	
 Clearsign a file:
 	gpg --clearsign filename
+
+Sign a filename:
+	gpg --sign filename
+
+Verify a signature:
+	gpg --verify file.txt.gpg
 
 Import GPG/PGP key:
 	gpg --import filename.asc
