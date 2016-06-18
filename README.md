@@ -113,7 +113,17 @@ case $1 in
         clearsign)
         echo "Signing..." $2
         gpg --clearsign $2
+				echo $2 " has an associated signature file!"
+        ;;
+        sign)
+        echo "Signing..." $2
+        gpg --sign $2
 				echo $2 " has been signed!"
+        ;;
+        verify)
+        echo "Signing..." $2
+        gpg --verify $2
+				echo $2 " verify status!"
         ;;
         decrypt)
         #echo "Decrypting..." $2
@@ -156,14 +166,16 @@ case $1 in
     message003="pgp uuedecrypt filename"
 		message004="pgp passencrypt textfile"
 		message005="pgp clearsign textfile"
-		message006="pgp decrypt filename"
-		message007="pgp encrypt filename"
-		message008="pgp import filename.asc"
-		message009="pgp delete-keys 5DD98B3E"
-		message010="pgp list"
-		message011="gpg --edit-key 5DD98B3E"
-		message012="pgp fingerprint"
-		message013="pgp fingerprint_from_file"
+		message006="pgp sign textfile"
+		message007="pgp decrypt filename"
+		message008="pgp encrypt filename"
+		message009="pgp import filename.asc"
+		message010="pgp delete-keys 5DD98B3E"
+		message011="pgp list"
+		message012="gpg --edit-key 5DD98B3E"
+		message013="pgp fingerprint"
+		message014="pgp fingerprint_from_file"
+		message015="pgp verify filename"
 		message999="message"
                 echo $message000
                 echo $message001
@@ -179,4 +191,12 @@ case $1 in
                 echo $message011
                 echo $message012
                 echo $message013
+                echo $message014
+                echo $message015
         ;;
+esac
+}
+
+
+On Fedora Linux, the passphrase cache timeout was 300 seconds (5 minutes). I couldn't find where I could change that setting. I ended up installing dconf-editor and I was able to change the passphrase cache. I added screenshots (dconf-editor_settings##.png.
+
