@@ -208,6 +208,10 @@ List all the keys and see the signatures as well type:
 
   gpg --list-sigs
 
+To list the secret keys you type:
+
+	gpg --list-secret-keys
+
 To see the fingerprints type:
 
 	gpg --fingerprint
@@ -233,6 +237,29 @@ There is one more important command that is relevant for working with keys.
  gpg --edit-key UID
 
 	Using this you can edit (among other things) the expiration date, add a fingerprint and sign your key. When in this mode you can press the question mark key to see the options available to you.
+
+Import a key:
+
+	gpg --import filename
+
+Export your key:
+
+	Export public key in binary format:
+	gpg --export <KEY ID>
+
+	Export public key in ascii format:
+	gpg --export -a <KEY ID>
+
+	Export secret key in binary format:
+	gpg --export-secret-key <KEY ID>
+
+	Export secret key in ascii format:
+	gpg --export-secret-key -a <KEY ID>
+
+Revoke a key:
+
+	gpg --gen-revoke
+
 
 
 https://www.gnupg.org/gph/en/manual/x110.html
