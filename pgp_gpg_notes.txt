@@ -1,32 +1,49 @@
 Encryption / Decryption
 
-Encrypt multiple files. This option may be combined with --sign.
+Encrypt a single file (creates a binary file). This option may be combined with --sign.
 
- 	-e, --encrypt
+ 	gpg -e filename
 
-This is a special version of the --encrypt command. The command expects the files to be encrypted either on the command line or reads the filenames from stdin; each name must be on separate line. The command is intended for a quick encryption of multiple files.
+ 	or
 
- 	--encrypt-files file1 file2 file3
+ 	gpg --encrypt filename
 
-Encrypt with symmetric cipher only. This command asks for a passphrase. (May also be combined with --sign -- see GnuPG 1.0.7 released.)
+Encrypt a single file (creates an ASCII file). This option may be combined with --sign.
 
- 	-c, --symmetric
-
-Encrypt to a recipient.
-
-	gpg -e -r therecipientname filename
+	gpg -a -e filename
 
 	or
 
-	gpg --encrypt -r therecipientname filename
+	gpg --armor --encrypt filename
+
+This is a special version of the --encrypt command. The command expects the files to be encrypted either on the command line or reads the filenames from stdin; each name must be on separate line. The command is intended for a quick encryption of multiple files.
+Encrypt multiple files. This option may be combined with --sign.
+
+ 	gpg --encrypt-files file1 file2 file3
+
+Encrypt with symmetric cipher only. This command asks for a passphrase. (May also be combined with --sign -- see GnuPG 1.0.7 released.)
+
+ 	gpg -c filename
+
+ 	or
+
+ 	gpg --symmetric filename
+
+Encrypt to a recipient.
+
+	gpg -e -r recipient filename
+
+	or
+
+	gpg --encrypt -r recipient filename
 
 	or encrypt and sign.
 
-	gpg -e -r therecipientname -s filename
+	gpg -e -r recipient -s filename
 
 Decrypt file (or stdin if no file is specified) and write it to stdout (or the file specified with --output). If the decrypted file is signed, the signature is also verified. This command differs from the default operation, as it never writes to the filename which is included in the file and it rejects files which don't begin with an encrypted message.
 
- 	--decrypt file
+ 	gpg --decrypt filenames
 
 Decrypt a file that has been binary or ascii encrypted and output to a file:
 	gpg --output decrypted.txt --decrypt encrypted.txt.gpg
@@ -37,7 +54,7 @@ Decrypt a file that has been binary or ascii encrypted and output to a file:
 
 This is a special version of the --decrypt command. The command expects the files to be decrypted either on the command line or reads the filenames from stdin; each name must be on separate line. The command is intended for a quick decryption of multiple files.
 
- 	--decrypt-files file1 file2 file3
+ 	gpg --decrypt-files file1 file2 file3
 
 Multiple Private Keys.
 
@@ -48,6 +65,10 @@ When encrypting or decrypting it is possible to have more than one private key i
 	or
 
 	gpg -u <KEY ID> -r recipient -a -s -e filename
+
+	or (this should prompt you for recipients)
+
+	gpg -u nameofprivatekey -a -s -e filename
 
 Signing / Verifying
 
@@ -74,11 +95,11 @@ Make a detached signature.
 
 Assume that sigfile is a signature and verify it without generating any output. With no arguments, the signature packet is read from stdin. If only a sigfile is given, it may be a complete signature or a detached signature, in which case the signed stuff is expected in a file without the ".sig" or ".asc" extension. With more than 1 argument, the first should be a detached signature and the remaining files are the signed stuff. To read the signed stuff from stdin, use - as the second filename. For security reasons a detached signature cannot read the signed material from stdin without denoting it in the above way.
 
- 	--verify sigfile signed_files
+ 	gpg --verify sigfile signed_files
 
 This is a special version of the --verify command which does not work with detached signatures. The command expects the files to be verified either on the command line or reads the filenames from stdin; each name must be on separate line. The command is intended for quick checking of many files.
 
- 	--verify-files files
+ 	gpg --verify-files filenames
 
 
 Options
@@ -91,77 +112,87 @@ General
 
 Create ASCII armored output.
 
- 	-a, --armor
+ 	gpg -a -e filename
+
+ 	or
+
+ 	gpg --armor -e filename
 
 Assume the input data is not in ASCII armored format.
 
- 	--no-armor
+ 	gpg --no-armor
 
 Use canonical text mode. If -t (but not --textmode) is used together with armoring and signing, this enables clearsigned messages. This kludge is needed for PGP compatibility; normally you would use --sign or --clearsign to selected the type of the signature.
 
- 	-t, --textmode
+ 	gpg -t
+
+ 	or
+
+ 	gpg --textmode
 
 Write output to file.
 
- 	-o, --output file
+ 	gpg -o outputfilename -d encryptedfilename
 
-Use name as the user ID to sign. This option is silently ignored for the list commands, so that it can be used in an options file.
+ 	or
 
- 	-u, --local-user name
+ 	gpg --output filename -d encryptedfilename
 
 Encrypt for user id name. If this option is not specified, GnuPG asks for the user-id unless --default-recipient is given.
 
- 	-r, --recipient name
+ 	gpg -r nameofkey
+
+ 	or
+
+ 	gpg --recipient nameofkey
 
 Sets up a name group, which is similar to aliases in email programs. Any time the group name is a receipient (-r or --recipient), it will be expanded to the values specified.
 The values are key IDs or fingerprints, but any key description is accepted. Note that a value with spaces in it will be treated as two different values. Note also there is only one level of expansion -- you cannot make a group that points to another group.
 
- 	--group name=value
+ 	gpg --group name=value
 
 Use name as default recipient if option --recipient is not used and don't ask if this is a valid one. name must be non-empty.
 
- 	--default-recipient name
+ 	gpg --default-recipient nameofkey
 
 Use the default key as default recipient if option --recipient is not used and don't ask if this is a valid one. The default key is the first one from the secret keyring or the one set with --default-key.
 
- 	--default-recipient-self
+ 	gpg --default-recipient-self
 
 Reset --default-recipient and --default-recipient-self.
 
- 	--no-default-recipient
+ 	gpg --no-default-recipient
 
 Use name as default user ID for signatures. If this is not used the default user ID is the first user ID found in the secret keyring.
 
- 	--default-key name
+ 	gpg --default-key nameofkey
 
 Same as --recipient but this one is intended for use in the options file and may be used with your own user-id as an "encrypt-to-self." These keys are only used when there are other recipients given either by use of --recipient or by the asked user id. No trust checking is performed for these user ids and even disabled keys can be used.
 
- 	--encrypt-to name	 	Example
+ 	gpg --encrypt-to name
 
 Disable the use of all --encrypt-to keys.
 
- 	--no-encrypt-to
+ 	gpg --no-encrypt-to
 
 
 Comments & Versions
 
-
 Use string as comment string in clear text signatures. The default is not to write a comment string.
 
- 	--comment string
+ 	gpg --comment string
 
 Force to write the standard comment string in clear text signatures. Use this to overwrite a --comment from a config file. This option is now obsolete because there is no default comment string anymore.
 
- 	--default-comment
+ 	gpg --default-comment
 
 Omit the version string in clear text signatures.
 
- 	--no-version
+ 	gpg --no-version
 
 Force to write the version string in clear text signatures. Use this to overwrite a previous --no-version from a config file.
 
- 	--emit-version
-
+ 	gpg --emit-version
 
 Special
 
@@ -183,43 +214,44 @@ Skip the signature verification step. This may be used to make the decryption fa
 
 When making a data signature, prompt for an expiration time. If this option is not specified, the expiration time is "never."
 
- 	--ask-sig-expire
+ 	gpg --ask-sig-expire
 
 Resets the --ask-sig-expire option.
 
- 	--no-ask-sig-expire
+ 	gpg --no-ask-sig-expire
 
 Do not put the keyid into encrypted packets. This option hides the receiver of the message and is a countermeasure against traffic analysis. It may slow down the decryption process because all available secret keys are tried.
 
- 	--throw-keyid
+ 	gpg --throw-keyid
 
 Don't look at the key ID as stored in the message but try all secret keys in turn to find the right decryption key. This option forces the behaviour as used by anonymous recipients (created by using --throw-keyid) and might come handy in case where an encrypted message contains a bogus key ID.
 
- 	--try-all-secrets
+ 	gpg --try-all-secrets
 
 Put the name value pair into the signature as notation data. Name must consist only of alphanumeric characters, digits or the underscore; the first character must not be a digit. Value may be any printable string; it will be encoded in UTF8, so you should check that your --charset is set correctly. If you prefix name with an exclamation mark, the notation data will be flagged as critical (rfc2440:5.2.3.15).
 
- 	-N, --notation-data name=value
+ 	gpg -N
+ 	gpg --notation-data name=value
 
 This option changes the behavior of cleartext signatures so that they can be used for patch files. You should not send such an armored file via email because all spaces and line endings are hashed too. You can not use this option for data which has 5 dashes at the beginning of a line, patch files don't have this. A special armor header line tells GnuPG about this cleartext signature option.
 
- 	--not-dash-escaped
+ 	gpg --not-dash-escaped
 
 Because some mailers change lines starting with "From " to "<From " it is good to handle such lines in a special way when creating cleartext signatures. All other PGP versions do it this way too. This option is not enabled by default because it would violate rfc2440.
 
- 	--escape-from-lines
+ 	gpg --escape-from-lines
 
 Use string as the name of file which is stored in messages.
 
- 	--set-filename string
+ 	gpg --set-filename string
 
 Try to create a file with a name as embedded in the data. This can be a dangerous option as it allows to overwrite files.
 
- 	--use-embedded-filename
+ 	gpg --use-embedded-filename
 
-This options enables a mode in which filenames of the form "-&n," where n is a non-negative decimal number, refer to the file descriptor n and not to a file with that name.
+This option enables a mode in which filenames of the form "-&n," where n is a non-negative decimal number, refer to the file descriptor n and not to a file with that name.
 
- 	--enable-special-filenames
+ 	gpg --enable-special-filenames
 
 Create a key.
 
@@ -233,7 +265,7 @@ gpg --gen-revoke
 
 
 Key Administration:
-With the GnuPG system comes a file that acts as some kind of database. In this file all data regarding keys with the information that comes with the keys is stored (everything until the Ownertrust values: for more information on that read Key signing). With
+With the GnuPG system comes a file that acts as some kind of database. In this file all data regarding keys with the information that comes with the keys is stored.
 
 List all the keys:
 
@@ -288,14 +320,8 @@ Export your key:
 	Export secret key in ascii format:
 	gpg --export-secret-key -a <KEY ID>
 
-Revoke a key:
-
-	gpg --gen-revoke
-
-
-
+Source:
 https://www.gnupg.org/gph/en/manual/x110.html
 http://www.dewinter.com/gnupg_howto/english/GPGMiniHowto-3.html#ss3.5
 https://www.gnupg.org/documentation/howtos.html
-https://www.gnupg.org/documentation/
-file:///Users/rob/Downloads/Github/pgp/commandline_switches.html
+https://github.com/rldutch1/pgp/blob/master/commandline_switches.html
