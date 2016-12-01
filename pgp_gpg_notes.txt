@@ -325,3 +325,4 @@ https://www.gnupg.org/gph/en/manual/x110.html
 http://www.dewinter.com/gnupg_howto/english/GPGMiniHowto-3.html#ss3.5
 https://www.gnupg.org/documentation/howtos.html
 https://github.com/rldutch1/pgp/blob/master/commandline_switches.html
+
