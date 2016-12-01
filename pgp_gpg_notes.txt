@@ -12,30 +12,65 @@ Encrypt with symmetric cipher only. This command asks for a passphrase. (May als
 
  	-c, --symmetric
 
+Encrypt to a recipient.
+
+	gpg -e -r therecipientname filename
+
+	or
+
+	gpg --encrypt -r therecipientname filename
+
+	or encrypt and sign.
+
+	gpg -e -r therecipientname -s filename
+
 Decrypt file (or stdin if no file is specified) and write it to stdout (or the file specified with --output). If the decrypted file is signed, the signature is also verified. This command differs from the default operation, as it never writes to the filename which is included in the file and it rejects files which don't begin with an encrypted message.
 
  	--decrypt file
 
-Decrypt a file that has been binary or ascii encrypted:
-	gpg --output decrypted.tar --decrypt encrypted.tar.gpg
+Decrypt a file that has been binary or ascii encrypted and output to a file:
+	gpg --output decrypted.txt --decrypt encrypted.txt.gpg
+
+	or
+
+	gpg -o decrypted.txt -d encrypted.txt.gpg
 
 This is a special version of the --decrypt command. The command expects the files to be decrypted either on the command line or reads the filenames from stdin; each name must be on separate line. The command is intended for a quick decryption of multiple files.
 
  	--decrypt-files file1 file2 file3
 
+Multiple Private Keys.
+
+When encrypting or decrypting it is possible to have more than one private key in use. If this occurs you need to select the active key. This can be done by using the option -u UID or by using the option --local-user UID. This causes the default key used to be replaced by the wanted key.
+
+	gpg -u <KEY ID> -r recipient --armor --sign --encrypt filename
+
+	or
+
+	gpg -u <KEY ID> -r recipient -a -s -e filename
 
 Signing / Verifying
 
-Make a signature. This command may be combined with --encrypt. (May also be combined with --symmetric -- -- see GnuPG 1.0.7 released.)
+Make a signature. This command may be combined with --encrypt. (May also be combined with --symmetric (see GnuPG 1.0.7 released.)
 
- 	-s, --sign
+ 	gpg -s filename
+
+ 	or
+
+ 	gpg --sign filename
+	Both -s and --sign make an illegible signature that you can't read.
 
 Make a clear text signature.
 
- 	--clearsign
+ 	gpg --clearsign filename
 
 Make a detached signature.
- 	-b, --detach-sign
+
+ 	gpg -b filename
+
+ 	or
+
+ 	gpg --detach-sign filename
 
 Assume that sigfile is a signature and verify it without generating any output. With no arguments, the signature packet is read from stdin. If only a sigfile is given, it may be a complete signature or a detached signature, in which case the signed stuff is expected in a file without the ".sig" or ".asc" extension. With more than 1 argument, the first should be a detached signature and the remaining files are the signed stuff. To read the signed stuff from stdin, use - as the second filename. For security reasons a detached signature cannot read the signed material from stdin without denoting it in the above way.
 
@@ -202,15 +237,12 @@ With the GnuPG system comes a file that acts as some kind of database. In this f
 
 List all the keys:
 
+	This will show you the HEX key IDs and other information.
 	gpg --list-keys
 
 List all the keys and see the signatures as well type:
 
   gpg --list-sigs
-
-To list the secret keys you type:
-
-	gpg --list-secret-keys
 
 To see the fingerprints type:
 
@@ -234,7 +266,7 @@ For deleting a secrete key you type:
 
 There is one more important command that is relevant for working with keys.
 
- gpg --edit-key UID
+ gpg --edit-key <HEX KEY ID>
 
 	Using this you can edit (among other things) the expiration date, add a fingerprint and sign your key. When in this mode you can press the question mark key to see the options available to you.
 
