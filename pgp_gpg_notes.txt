@@ -78,8 +78,8 @@ Make a signature. This command may be combined with --encrypt. (May also be comb
 
  	or
 
-	gpg --sign filename
-	Both -s and --sign make an illegible signature that you can't read. This is ok because gpg/pgp can still read it (not humans).
+  gpg --sign filename
+  Both -s and --sign make an illegible signature that you can't read. This is OK because GPG/PGP can still read it (not humans).
 
 Make a clear text signature.
 
@@ -270,7 +270,6 @@ With the GnuPG system comes a file that acts as some kind of database. In this f
 List all the keys:
 
 	This will show you the HEX key IDs and other information.
-
 	gpg --list-keys
 
 List all the keys and see the signatures as well type:
