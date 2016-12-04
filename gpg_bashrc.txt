@@ -3,49 +3,51 @@ pgp(){
 clear
 case $1 in
         ascii)
-	echo "ASCII Encrypting... " $2
+				echo "ASCII Encrypting... " $2
         gpg -a -e $2
-	echo "..." >> $2;rm -f $2
-	echo $2 " has been deleted!"
+				echo "..." >> $2;rm -f $2
+				echo $2 " has been deleted!"
         ;;
         uue)
-  	echo "UUEncoding..." $2
-  	uuencode $2 $2 > $2.uue
- 	echo "ASCII Encrypting..." $2.uue
- 	gpg -a -e $2.uue
- 	echo "..." > $2.uue;rm -f $2 $2.uue
- 	echo $2 " has been deleted!"
-  	;;
+  			echo "UUEncoding..." $2
+  			uuencode $2 $2 > $2.uue
+ 				echo "ASCII Encrypting..." $2.uue
+ 				gpg -a -e $2.uue
+ 				echo "..." > $2.uue;rm -f $2 $2.uue
+ 				echo $2 " has been deleted!"
+  			;;
         uuegpg)
-  	echo "UUEncoding..." $2
-  	uuencode $2 $2 > $2.uue
- 	echo "Encrypting..." $2.uue
- 	gpg --encrypt $2.uue
- 	echo "..." > $2.uue;rm -f $2 $2.uue
- 	echo $2 " has been deleted!"
-  	;;
+  			echo "UUEncoding..." $2
+  			uuencode $2 $2 > $2.uue
+ 				echo "Encrypting..." $2.uue
+ 				gpg --encrypt $2.uue
+ 				echo "..." > $2.uue;rm -f $2 $2.uue
+ 				echo $2 " has been deleted!"
+  			;;
         uuedecrypt)
- 	echo "Decrypting..." $2
- 	gpg --decrypt $2 > $2.uue
-  	echo "Decoding..." $2
-  	uudecode $2.uue;
-  	echo "..." > $2.uue;rm -f $2.uue
- 	echo $2 " has been decoded!"
-  	;;
+ 				gpg --decrypt $2 > $2.uue
+  			echo "Decoding..." $2
+  			uudecode $2.uue;
+  			echo "..." > $2.uue;rm -f $2.uue
+ 				echo $2 " has been decoded!"
+  			;;
         passencrypt)
         echo "Encrypting..." $2
         gpg -c -s $2
-	echo $2 " has been password encrypted!"
+				echo $2 " has been password encrypted!"
         ;;
         clearsign)
         echo "Signing..." $2
         gpg --clearsign $2
-	echo $2 " has been signed!"
+				echo $2 " has been signed!"
         ;;
         decrypt)
-        #echo "Decrypting..." $2
         #gpg --decrypt $2
-	gpg -o $2.decrypted -d $2
+        if [ ! $2 ] || [ ! $3 ]; then
+        echo "Syntax: pgp decrypt outputfile encryptedfile.asc"
+        else
+        gpg --output $2 --decrypt $3
+        fi
         ;;
         encrypt)
         echo "Encrypting..." $2
@@ -53,36 +55,63 @@ case $1 in
         echo "..." > $2;rm -f $2
         echo $2 " has been deleted!"
         ;;
-	list)
-	gpg --list-keys
-	;;
+        import)
+        echo "Importing..." $2
+        gpg --import $2
+        echo $2 " has been imported!"
+        ;;
+				list)
+				gpg --list-keys
+				;;
+				fingerprint)
+				gpg --fingerprint $2
+				;;
+				fingerprint_from_file)
+				gpg --with-fingerprint $2
+				;;
+        delete-keys)
+        echo "Deleting..." $2
+        gpg --delete-keys $2
+        gpg --list-keys
+        ;;
 	message)
 	cd ~/Documents/PGP/messages
 	xyzrh1=message.`date +"%Y%m%d%H%M%S%Z"`
 	vi $xyzrh1.txt; pgp ascii $xyzrh1.txt
 	;;
         *)
-		message00="pgp ascii textfile"
-  		message09="pgp uue filename"
-		message01="pgp uuegpg filename"
-		message02="pgp uuedecrypt filename"
-		message03="pgp passencrypt textfile"
-		message04="pgp clearsign textfile"
-		message05="pgp decrypt filename"
-		message06="pgp encrypt filename"
-		message07="list"
-		message08="message"
-                echo $message00
-                echo $message09
-                echo $message01
-                echo $message02
-                echo $message03
-                echo $message04
-                echo $message05
-                echo $message06
-                echo $message07
-                echo $message08
-        ;;
+    		message00="pgp ascii textfile"
+    		message09="pgp uue filename"
+    		message01="pgp uuegpg filename"
+    		message02="pgp uuedecrypt filename"
+				message03="pgp passencrypt textfile"
+				message04="pgp clearsign textfile"
+				message05="pgp decrypt newfile.tar encryptedfile.tar.gpg"
+				message06="pgp encrypt filename"
+				message07="pgp list"
+				message08="pgp message"
+				message10="pgp fingerprint 5DD98B3E"
+				message11="pgp fingerprint_from_file file_with_key"
+				message12="pgp import filename.asc"
+				message13="pgp delete-keys 5DD98B3E"
+				message14="gpg --edit-key 5DD98B3E"
+        echo $message00
+        echo $message09
+        echo $message01
+        echo $message02
+        echo $message03
+        echo $message04
+        echo $message05
+        echo $message06
+        echo $message07
+        echo $message08
+        echo $message10
+        echo $message11
+        echo $message12
+        echo $message13
+        echo $message14
+        echo " "
+   ;;
 esac
 }
 
