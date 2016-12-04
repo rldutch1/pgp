@@ -259,7 +259,7 @@ Create a key.
 
 Revoke a Key.
 
-gpg --gen-revoke
+	gpg --gen-revoke
 
 	This creates a revocation certificate. To be able to do this, you need a secret key, else anyone could revoke your certificate. This has one disadvantage. If I do not know the passphrase the key has become useless. But I cannot revoke the key! To overcome this problem it is wise to create a revoke license when you create a key pair. And if you do so, keep it safe! This can be on disk, paper, etc. Make sure that this certificate will not fall into wrong hands!!!! If you don't someone else can issue the revoke certificate for your key and make it useless.
 
@@ -290,7 +290,7 @@ Note that listing fingerprints and signatures from private keys has no use whats
 
 In order to delete a public key you type:
 
- gpg --delete-key UID
+ 	gpg --delete-key UID
 
 For deleting a secrete key you type:
 
@@ -298,7 +298,7 @@ For deleting a secrete key you type:
 
 There is one more important command that is relevant for working with keys.
 
- gpg --edit-key <HEX KEY ID>
+	gpg --edit-key <HEX KEY ID>
 
 	Using this you can edit (among other things) the expiration date, add a fingerprint and sign your key. When in this mode you can press the question mark key to see the options available to you.
 
