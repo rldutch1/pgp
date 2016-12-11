@@ -3,43 +3,43 @@ pgp(){
 clear
 case $1 in
         ascii)
-				echo "ASCII Encrypting... " $2
+	echo "ASCII Encrypting... " $2
         gpg -a -e $2
-				echo "..." >> $2;rm -f $2
-				echo $2 " has been deleted!"
+	echo "..." >> $2;rm -f $2
+	echo $2 " has been deleted!"
         ;;
         uue)
-  			echo "UUEncoding..." $2
-  			uuencode $2 $2 > $2.uue
- 				echo "ASCII Encrypting..." $2.uue
- 				gpg -a -e $2.uue
- 				echo "..." > $2.uue;rm -f $2 $2.uue
- 				echo $2 " has been deleted!"
-  			;;
+  	echo "UUEncoding..." $2
+  	uuencode $2 $2 > $2.uue
+ 	echo "ASCII Encrypting..." $2.uue
+ 	gpg -a -e $2.uue
+ 	echo "..." > $2.uue;rm -f $2 $2.uue
+ 	echo $2 " has been deleted!"
+  	;;
         uuegpg)
-  			echo "UUEncoding..." $2
-  			uuencode $2 $2 > $2.uue
- 				echo "Encrypting..." $2.uue
- 				gpg --encrypt $2.uue
- 				echo "..." > $2.uue;rm -f $2 $2.uue
- 				echo $2 " has been deleted!"
-  			;;
+  	echo "UUEncoding..." $2
+  	uuencode $2 $2 > $2.uue
+ 	echo "Encrypting..." $2.uue
+ 	gpg --encrypt $2.uue
+ 	echo "..." > $2.uue;rm -f $2 $2.uue
+ 	echo $2 " has been deleted!"
+  	;;
         uuedecrypt)
- 				gpg --decrypt $2 > $2.uue
-  			echo "Decoding..." $2
-  			uudecode $2.uue;
-  			echo "..." > $2.uue;rm -f $2.uue
- 				echo $2 " has been decoded!"
-  			;;
+ 	gpg --decrypt $2 > $2.uue
+  	echo "Decoding..." $2
+  	uudecode $2.uue;
+  	echo "..." > $2.uue;rm -f $2.uue
+ 	echo $2 " has been decoded!"
+  	;;
         passencrypt)
         echo "Encrypting..." $2
         gpg -c -s $2
-				echo $2 " has been password encrypted!"
+	echo $2 " has been password encrypted!"
         ;;
         clearsign)
         echo "Signing..." $2
         gpg --clearsign $2
-				echo $2 " has been signed!"
+	echo $2 " has been signed!"
         ;;
         decrypt)
         #gpg --decrypt $2
@@ -60,15 +60,15 @@ case $1 in
         gpg --import $2
         echo $2 " has been imported!"
         ;;
-				list)
-				gpg --list-keys
-				;;
-				fingerprint)
-				gpg --fingerprint $2
-				;;
-				fingerprint_from_file)
-				gpg --with-fingerprint $2
-				;;
+	list)
+	gpg --list-keys
+	;;
+	fingerprint)
+	gpg --fingerprint $2
+	;;
+	fingerprint_from_file)
+	gpg --with-fingerprint $2
+	;;
         delete-keys)
         echo "Deleting..." $2
         gpg --delete-keys $2
