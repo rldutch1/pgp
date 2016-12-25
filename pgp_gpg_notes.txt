@@ -292,7 +292,7 @@ In order to delete a public key you type:
 
  	gpg --delete-key UID
 
-For deleting a secrete key you type:
+For deleting a secret key you type:
 
   gpg --delete-secret-key
 
