@@ -1,5 +1,11 @@
 Encryption / Decryption
 
+Encrypt a message to standard output.
+  gpg -ea
+  Enter your recipients and end with an empty line.
+  Type your message that you want to encrypt.
+  Press Control+D and your encrypted message will appear onscreen.
+
 Encrypt a single file (creates a binary file). This option may be combined with --sign.
 
  	gpg -e filename
@@ -40,6 +46,12 @@ Encrypt to a recipient.
 	or encrypt and sign.
 
 	gpg -e -r recipient -s filename
+
+Decrypt a message in standard out (stout).
+  gpg
+  You will see a message similar to this: gpg: Go ahead and type your message ...
+  At this point you can paste in the encrypted text and you will be prompted for your passphrase.
+  Once you enter your passphrase, press Control+D to see the decrypted message.
 
 Decrypt file (or stdin if no file is specified) and write it to stdout (or the file specified with --output). If the decrypted file is signed, the signature is also verified. This command differs from the default operation, as it never writes to the filename which is included in the file and it rejects files which don't begin with an encrypted message.
 
