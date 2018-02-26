@@ -340,3 +340,131 @@ https://www.gnupg.org/gph/en/manual/x110.html
 http://www.dewinter.com/gnupg_howto/english/GPGMiniHowto-3.html#ss3.5
 https://www.gnupg.org/documentation/howtos.html
 https://github.com/rldutch1/pgp/blob/master/commandline_switches.html
+
+
+Here is a GPG function that I have created and use on my Mac and Linux computers (it works on Windows too with Git or Cygwin installed). I named it "pgp" so that it is different from gpg and will not conflict.
+
+pgp(){
+clear
+case $1 in
+        ascii)
+				echo "ASCII Encrypting... " $2
+        gpg -a -e $2
+				echo "..." >> $2;rm -f $2
+				echo $2 " has been deleted!"
+        ;;
+        uue)
+  			echo "UUEncoding..." $2
+  			uuencode $2 $2 > $2.uue
+ 				echo "ASCII Encrypting..." $2.uue
+ 				gpg -a -e $2.uue
+ 				echo "..." > $2.uue;rm -f $2 $2.uue
+ 				echo $2 " has been deleted!"
+  			;;
+        uuegpg)
+  			echo "UUEncoding..." $2
+  			uuencode $2 $2 > $2.uue
+ 				echo "Encrypting..." $2.uue
+ 				gpg --encrypt $2.uue
+ 				echo "..." > $2.uue;rm -f $2 $2.uue
+ 				echo $2 " has been deleted!"
+  			;;
+        uuedecrypt)
+ 				gpg --decrypt $2 > $2.uue
+  			echo "Decoding..." $2
+  			uudecode $2.uue;
+  			echo "..." > $2.uue;rm -f $2.uue
+ 				echo $2 " has been decoded!"
+  			;;
+        passencrypt)
+        echo "Encrypting..." $2
+        gpg -c -s $2
+				echo $2 " has been password encrypted!"
+        ;;
+        clearsign)
+        echo "Signing..." $2
+        gpg --clearsign $2
+				echo $2 " has been signed!"
+        ;;
+        decrypto)
+        #gpg --decrypt $2
+        if [ ! $3 ]; then
+        echo "Syntax: pgp decrypto outputfile encryptedfile.asc"
+        else
+        gpg --output $2 --decrypt $3
+        fi
+        ;;
+				decrypt)
+        if [ ! $2 ] ; then
+        echo "Syntax: pgp decrypt encryptedfile.asc"
+        else
+        gpg --decrypt $2
+        fi
+        ;;
+        encrypt)
+        echo "Encrypting..." $2
+        gpg --encrypt $2
+        echo "..." > $2;rm -f $2
+        echo $2 " has been deleted!"
+        ;;
+        import)
+        echo "Importing..." $2
+        gpg --import $2
+        echo $2 " has been imported!"
+        ;;
+				list)
+				gpg --list-keys
+				;;
+				fingerprint)
+				gpg --fingerprint $2
+				;;
+				fingerprint_from_file)
+				gpg --with-fingerprint $2
+				;;
+        delete-keys)
+        echo "Deleting..." $2
+        gpg --delete-keys $2
+        gpg --list-keys
+        ;;
+	message)
+	cd ~/Documents/PGP/messages
+	xyzrh1=message.`date +"%Y%m%d%H%M%S%Z"`
+	vi $xyzrh1.txt; pgp ascii $xyzrh1.txt
+	;;
+        *)
+    		message00="pgp ascii textfile"
+    		message01="pgp uue filename"
+    		message02="pgp uuegpg filename"
+    		message03="pgp uuedecrypt filename"
+				message04="pgp passencrypt textfile"
+				message05="pgp clearsign textfile"
+				message06="pgp decrypt encryptedfile.tar.gpg"
+				message07="pgp decrypto outputfile.tar encryptedfile.tar.gpg"
+				message08="pgp encrypt filename"
+				message09="pgp list"
+				message10="pgp fingerprint 5DD98B3E"
+				message11="pgp fingerprint_from_file file_with_key"
+				message12="pgp import filename.asc"
+				message13="pgp delete-keys 5DD98B3E"
+				message14="gpg --edit-key 5DD98B3E"
+				message15="pgp message"
+        echo $message00
+        echo $message09
+        echo $message01
+        echo $message02
+        echo $message03
+        echo $message04
+        echo $message05
+        echo $message06
+        echo $message07
+        echo $message08
+        echo $message10
+        echo $message11
+        echo $message12
+        echo $message13
+        echo $message14
+        echo $message15
+        echo " "
+   ;;
+esac
+}
