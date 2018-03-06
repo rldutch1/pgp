@@ -1,0 +1,550 @@
+<!DOCTYPE HTML PUBLIC "-//Norman Walsh//DTD DocBook HTML 1.0//EN">
+<HTML
+><HEAD
+><TITLE
+>Options Reference</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet"><LINK
+REL="HOME"
+TITLE="The GNU Privacy Handbook"
+HREF="book1.html"><LINK
+REL="PREVIOUS"
+TITLE="help"
+HREF="r1162.html"><LINK
+REL="NEXT"
+TITLE="keyserver"
+HREF="r1182.html"></HEAD
+><BODY
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>The GNU Privacy Handbook</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="r1162.html"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="r1182.html"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="TITLE"
+>II. Options Reference</H1
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Table of Contents</B
+></DT
+><DT
+><A
+HREF="r1182.html"
+>keyserver</A
+> &#8212; specify the keyserver to use to locate keys</DT
+><DT
+><A
+HREF="r1197.html"
+>output</A
+> &#8212; specify the file in which to place output</DT
+><DT
+><A
+HREF="r1208.html"
+>recipient</A
+> &#8212; specify the recipient of a public-key encrypted document</DT
+><DT
+><A
+HREF="r1223.html"
+>default-recipient</A
+> &#8212; specify the default recipient of a public-key encrypted document</DT
+><DT
+><A
+HREF="r1235.html"
+>default-recipient-self</A
+> &#8212; use the default key user ID as the default recipient of a public-key encrypted document</DT
+><DT
+><A
+HREF="r1248.html"
+>no-default-recipient</A
+> &#8212; ignore the options <SPAN
+CLASS="OPTION"
+>default-recipient</SPAN
+> and
+<SPAN
+CLASS="OPTION"
+>default-recipient-self</SPAN
+></DT
+><DT
+><A
+HREF="r1261.html"
+>encrypt-to</A
+> &#8212; specify an additional recipient of a public-key encrypted document</DT
+><DT
+><A
+HREF="r1278.html"
+>no-encrypt-to</A
+> &#8212; ignore the option <SPAN
+CLASS="OPTION"
+>encrypt-to</SPAN
+></DT
+><DT
+><A
+HREF="r1290.html"
+>armor</A
+> &#8212; ASCII-armor encrypted or signed output</DT
+><DT
+><A
+HREF="r1300.html"
+>no-armor</A
+> &#8212; assume input data is not ASCII armored</DT
+><DT
+><A
+HREF="r1310.html"
+>no-greeting</A
+> &#8212; suppress the opening copyright notice but do not enter batch mode</DT
+><DT
+><A
+HREF="r1320.html"
+>no-secmem-warning</A
+> &#8212; suppress warnings if insecure memory is used</DT
+><DT
+><A
+HREF="r1330.html"
+>batch</A
+> &#8212; use batch mode</DT
+><DT
+><A
+HREF="r1341.html"
+>no-batch</A
+> &#8212; disable batch mode</DT
+><DT
+><A
+HREF="r1353.html"
+>local-user</A
+> &#8212; specifies a user id to use for signing</DT
+><DT
+><A
+HREF="r1365.html"
+>default-key</A
+> &#8212; specifies a user ID as a default user ID for signatures</DT
+><DT
+><A
+HREF="r1377.html"
+>completes-needed</A
+> &#8212; specifies the number of fully-trusted people needed to validate a new key.</DT
+><DT
+><A
+HREF="r1390.html"
+>marginals-needed</A
+> &#8212; specifies the number of marginally-trusted people needed to validate
+a new key.</DT
+><DT
+><A
+HREF="r1403.html"
+>load-extension</A
+> &#8212; specifies an extension to load.</DT
+><DT
+><A
+HREF="r1414.html"
+>rfc1991</A
+> &#8212; try to be more RFC1991 (PGP 2.x) compliant</DT
+><DT
+><A
+HREF="r1424.html"
+>allow-non-selfsigned-uid</A
+> &#8212; allow the import of keys with user IDs which are not self-signed</DT
+><DT
+><A
+HREF="r1434.html"
+>cipher-algo</A
+> &#8212; use a specified algorithm as the symmetric cipher</DT
+><DT
+><A
+HREF="r1449.html"
+>compress-algo</A
+> &#8212; use a specified compression algorithm</DT
+><DT
+><A
+HREF="r1460.html"
+>z</A
+> &#8212; set compression level</DT
+><DT
+><A
+HREF="r1472.html"
+>verbose</A
+> &#8212; provide additional information during processing</DT
+><DT
+><A
+HREF="r1482.html"
+>no-verbose</A
+> &#8212; resets verbosity to none</DT
+><DT
+><A
+HREF="r1494.html"
+>quiet</A
+> &#8212; supress informational output</DT
+><DT
+><A
+HREF="r1504.html"
+>textmode</A
+> &#8212; use canonical text mode</DT
+><DT
+><A
+HREF="r1514.html"
+>dry-run</A
+> &#8212; do not make changes</DT
+><DT
+><A
+HREF="r1524.html"
+>interactive</A
+> &#8212; prompt before overwriting files</DT
+><DT
+><A
+HREF="r1534.html"
+>yes</A
+> &#8212; assume ``yes'' to most questions</DT
+><DT
+><A
+HREF="r1544.html"
+>no</A
+> &#8212; assume ``no'' to most questions</DT
+><DT
+><A
+HREF="r1554.html"
+>always-trust</A
+> &#8212; skip key validation</DT
+><DT
+><A
+HREF="r1564.html"
+>skip-verify</A
+> &#8212; skip signature verification</DT
+><DT
+><A
+HREF="r1574.html"
+>keyring</A
+> &#8212; add a keyring to the list of keyrings</DT
+><DT
+><A
+HREF="r1593.html"
+>secret-keyring</A
+> &#8212; add a secret keyring</DT
+><DT
+><A
+HREF="r1606.html"
+>no-default-keyring</A
+> &#8212; do not add the default keyrings to the list of keyrings</DT
+><DT
+><A
+HREF="r1616.html"
+>homedir</A
+> &#8212; set the home directory</DT
+><DT
+><A
+HREF="r1627.html"
+>charset</A
+> &#8212; set the name of the native character set.</DT
+><DT
+><A
+HREF="r1655.html"
+>no-literal</A
+> &#8212; ?</DT
+><DT
+><A
+HREF="r1665.html"
+>set-filesize</A
+> &#8212; ?</DT
+><DT
+><A
+HREF="r1676.html"
+>with-fingerprint</A
+> &#8212; modifies key listing output</DT
+><DT
+><A
+HREF="r1690.html"
+>with-colons</A
+> &#8212; modifies key listing output</DT
+><DT
+><A
+HREF="r1702.html"
+>with-key-data</A
+> &#8212; modifies key listing output</DT
+><DT
+><A
+HREF="r1714.html"
+>lock-once</A
+> &#8212; locks the databases once</DT
+><DT
+><A
+HREF="r1724.html"
+>lock-multiple</A
+> &#8212; locks the databases each time they are used</DT
+><DT
+><A
+HREF="r1736.html"
+>passphrase-fd</A
+> &#8212; read the passphrase from a different input stream</DT
+><DT
+><A
+HREF="r1748.html"
+>force-mdc</A
+> &#8212; force the use of encryption with appended manipulation code</DT
+><DT
+><A
+HREF="r1758.html"
+>force-v3-sigs</A
+> &#8212; force the use of v3 signatures on data</DT
+><DT
+><A
+HREF="r1768.html"
+>openpgp</A
+> &#8212; reset all packet, cipher, and digest options to the OpenPGP specification</DT
+><DT
+><A
+HREF="r1794.html"
+>utf8-strings</A
+> &#8212; assume that arguments are provided as UTF8 strings</DT
+><DT
+><A
+HREF="r1804.html"
+>no-utf8-strings</A
+> &#8212; assume that arguments are not provided as UTF8 strings</DT
+><DT
+><A
+HREF="r1817.html"
+>no-options</A
+> &#8212; use no options file</DT
+><DT
+><A
+HREF="r1827.html"
+>debug</A
+> &#8212; set debug flags</DT
+><DT
+><A
+HREF="r1873.html"
+>debug-all</A
+> &#8212; set all useful debugging flags</DT
+><DT
+><A
+HREF="r1885.html"
+>status-fd</A
+> &#8212; write status messages to an alternative output stream</DT
+><DT
+><A
+HREF="r1898.html"
+>logger-fd</A
+> &#8212; write log messages to an alternative output stream</DT
+><DT
+><A
+HREF="r1910.html"
+>no-comment</A
+> &#8212; do not write comment packets</DT
+><DT
+><A
+HREF="r1920.html"
+>comment</A
+> &#8212; set the comment string to use in cleartext signatures</DT
+><DT
+><A
+HREF="r1931.html"
+>default-comment</A
+> &#8212; use the standard comment string in cleartext signatures</DT
+><DT
+><A
+HREF="r1943.html"
+>no-version</A
+> &#8212; omit the version string in clear text signatures</DT
+><DT
+><A
+HREF="r1953.html"
+>emit-version</A
+> &#8212; emit the version string in cleartext signatures</DT
+><DT
+><A
+HREF="r1965.html"
+>notation-data</A
+> &#8212; add data to a signature as notation data</DT
+><DT
+><A
+HREF="r1983.html"
+>set-policy-url</A
+> &#8212; set the policy URL for signatures</DT
+><DT
+><A
+HREF="r1995.html"
+>set-filename</A
+> &#8212; sets the filename stored in encrypted or signed messages</DT
+><DT
+><A
+HREF="r2007.html"
+>use-embedded-filename</A
+> &#8212; use the filename embedded in a message for storing its plaintext or verified
+version</DT
+><DT
+><A
+HREF="r2017.html"
+>max-cert-depth</A
+> &#8212; set the maximum depth of a certification chain</DT
+><DT
+><A
+HREF="r2029.html"
+>digest-algo</A
+> &#8212; set the message digest algorithm</DT
+><DT
+><A
+HREF="r2044.html"
+>s2k-cipher-algo</A
+> &#8212; use a specified algorithm as the symmetric cipher for encrypting private keys</DT
+><DT
+><A
+HREF="r2059.html"
+>s2k-digest-algo</A
+> &#8212; set the message digest algorithm for mangling passphrases protecting private
+keys</DT
+><DT
+><A
+HREF="r2071.html"
+>s2k-mode</A
+> &#8212; sets how passphrases are mangled</DT
+><DT
+><A
+HREF="r2086.html"
+>disable-cipher-algo</A
+> &#8212; prevents a symmetric cipher from being used</DT
+><DT
+><A
+HREF="r2098.html"
+>disable-pubkey-algo</A
+> &#8212; prevents a public key cipher from being used</DT
+><DT
+><A
+HREF="r2110.html"
+>throw-keyid</A
+> &#8212; do not put key IDs into encrypted packets</DT
+><DT
+><A
+HREF="r2120.html"
+>not-dash-escaped</A
+> &#8212; changes the format of cleartext signatures</DT
+><DT
+><A
+HREF="r2130.html"
+>escape-from-lines</A
+> &#8212; modifies messages beginning with ``From'' when cleartext signing</DT
+></DL
+></DIV
+><DIV
+CLASS="PARTINTRO"
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="OPTIONSFILE"
+>Setting options</A
+></H1
+><P
+>Options may be specified on the command line or in an options file.
+The default location of the options file is
+<TT
+CLASS="LITERAL"
+>~/.gnupg/options</TT
+>.
+When specifying options in the options file, omit the leading two
+dashes and instead use simply the option name followed by any
+arguments.
+Lines in the file with a hash (<TT
+CLASS="LITERAL"
+>#</TT
+>) as the 
+first non-white-space character are ignored.</P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="r1162.html"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="book1.html"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="r1182.html"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>help</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>keyserver</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

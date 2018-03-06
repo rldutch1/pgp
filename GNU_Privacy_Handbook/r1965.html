@@ -1,0 +1,210 @@
+<!DOCTYPE HTML PUBLIC "-//Norman Walsh//DTD DocBook HTML 1.0//EN">
+<HTML
+><HEAD
+><TITLE
+>notation-data</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet"><LINK
+REL="HOME"
+TITLE="The GNU Privacy Handbook"
+HREF="book1.html"><LINK
+REL="UP"
+TITLE="Options Reference"
+HREF="r1172.html"><LINK
+REL="PREVIOUS"
+TITLE="emit-version"
+HREF="r1953.html"><LINK
+REL="NEXT"
+TITLE="set-policy-url"
+HREF="r1983.html"></HEAD
+><BODY
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>The GNU Privacy Handbook</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="r1953.html"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="r1983.html"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+>notation-data</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN1966"
+></A
+><H2
+>Name</H2
+>notation-data &#8212; add data to a signature as notation data</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN1969"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SYNOPSIS"
+><SPAN
+CLASS="OPTION"
+>notation-data</SPAN
+> <TT
+CLASS="REPLACEABLE"
+><I
+>name=value</I
+></TT
+></PRE
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN1973"
+></A
+><H2
+>Description</H2
+><P
+>This adds the 
+<TT
+CLASS="REPLACEABLE"
+><I
+>name</I
+></TT
+>/<TT
+CLASS="REPLACEABLE"
+><I
+>value</I
+></TT
+> pair to a signature.
+The parameter <TT
+CLASS="REPLACEABLE"
+><I
+>name</I
+></TT
+> 
+must consist of an alphabetic character followed by any number of alphanumeric
+or underscore characters.
+The parameter <TT
+CLASS="REPLACEABLE"
+><I
+>value</I
+></TT
+>  may be
+any printable string.
+It will be encoded in UTF8, so it is important that 
+the option <A
+HREF="r1627.html"
+><SPAN
+CLASS="OPTION"
+>charset</SPAN
+></A
+> is
+used to set the character set properly.
+If the parameter <TT
+CLASS="REPLACEABLE"
+><I
+>name</I
+></TT
+> is
+prefixed with an exclamation mark, the notation data will be
+flagged as critical (see rfc2440:5.2.3.15).</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="r1953.html"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="book1.html"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="r1983.html"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>emit-version</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="r1172.html"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>set-policy-url</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

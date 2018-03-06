@@ -1,0 +1,927 @@
+<!DOCTYPE HTML PUBLIC "-//Norman Walsh//DTD DocBook HTML 1.0//EN">
+<HTML
+><HEAD
+><TITLE
+>The GNU Privacy Handbook</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet"><LINK
+REL="NEXT"
+TITLE="Getting Started"
+HREF="c14.html"></HEAD
+><BODY
+><DIV
+CLASS="BOOK"
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="TITLE"
+><A
+NAME="AEN2"
+>The GNU Privacy Handbook</A
+></H1
+><P
+CLASS="COPYRIGHT"
+>Copyright © 1999 by <SPAN
+CLASS="HOLDER"
+>The Free Software Foundation</SPAN
+></P
+><DIV
+CLASS="ABSTRACT"
+><P
+>Please direct questions, bug reports, or suggesstions concerning
+this manual to the maintainer, Mike Ashley (<TT
+CLASS="EMAIL"
+>&#60;<A
+HREF="mailto:jashley@acm.org"
+>jashley@acm.org</A
+>&#62;</TT
+>).
+Contributors to this manual also include Matthew Copeland, Joergen Grahn, 
+and David A. Wheeler.  J Horacio MG has translated the manual to Spanish.</P
+><P
+>This manual may be redistributed under the terms of the
+<A
+HREF="http://www.gnu.org/copyleft/gpl.html"
+TARGET="_top"
+>GNU General Public 
+License</A
+>.</P
+></DIV
+><HR></DIV
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Table of Contents</B
+></DT
+><DT
+>1. <A
+HREF="c14.html"
+>Getting Started</A
+></DT
+><DD
+><DL
+><DT
+><A
+HREF="c14.html#AEN25"
+>Generating a new keypair</A
+></DT
+><DD
+><DL
+><DT
+><A
+HREF="c14.html#REVOCATION"
+>Generating a revocation certificate</A
+></DT
+></DL
+></DD
+><DT
+><A
+HREF="x56.html"
+>Exchanging keys</A
+></DT
+><DD
+><DL
+><DT
+><A
+HREF="x56.html#AEN64"
+>Exporting a public key</A
+></DT
+><DT
+><A
+HREF="x56.html#AEN83"
+>Importing a public key</A
+></DT
+></DL
+></DD
+><DT
+><A
+HREF="x110.html"
+>Encrypting and decrypting documents</A
+></DT
+><DT
+><A
+HREF="x135.html"
+>Making and verifying signatures</A
+></DT
+><DD
+><DL
+><DT
+><A
+HREF="x135.html#AEN152"
+>Clearsigned documents</A
+></DT
+><DT
+><A
+HREF="x135.html#AEN160"
+>Detached signatures</A
+></DT
+></DL
+></DD
+></DL
+></DD
+><DT
+>2. <A
+HREF="c173.html"
+>Concepts</A
+></DT
+><DD
+><DL
+><DT
+><A
+HREF="c173.html#AEN184"
+>Symmetric ciphers</A
+></DT
+><DT
+><A
+HREF="x195.html"
+>Public-key ciphers</A
+></DT
+><DT
+><A
+HREF="x209.html"
+>Hybrid ciphers</A
+></DT
+><DT
+><A
+HREF="x215.html"
+>Digital signatures</A
+></DT
+></DL
+></DD
+><DT
+>3. <A
+HREF="c235.html"
+>Key Management</A
+></DT
+><DD
+><DL
+><DT
+><A
+HREF="c235.html#AEN243"
+>Managing your own keypair</A
+></DT
+><DD
+><DL
+><DT
+><A
+HREF="c235.html#AEN266"
+>Key integrity</A
+></DT
+><DT
+><A
+HREF="c235.html#AEN281"
+>Adding and deleting key components</A
+></DT
+><DT
+><A
+HREF="c235.html#AEN304"
+>Revoking key components</A
+></DT
+><DT
+><A
+HREF="c235.html#AEN328"
+>Updating a key's expiration time</A
+></DT
+></DL
+></DD
+><DT
+><A
+HREF="x334.html"
+>Validating other keys on your public keyring</A
+></DT
+><DD
+><DL
+><DT
+><A
+HREF="x334.html#AEN345"
+>Trust in a key's owner</A
+></DT
+><DT
+><A
+HREF="x334.html#AEN384"
+>Using trust to validate keys</A
+></DT
+></DL
+></DD
+><DT
+><A
+HREF="x457.html"
+>Distributing keys</A
+></DT
+></DL
+></DD
+><DT
+>4. <A
+HREF="c481.html"
+>Daily use of GnuPG</A
+></DT
+><DD
+><DL
+><DT
+><A
+HREF="c481.html#AEN487"
+>Defining your security needs</A
+></DT
+><DD
+><DL
+><DT
+><A
+HREF="c481.html#AEN501"
+>Choosing a key size</A
+></DT
+><DT
+><A
+HREF="c481.html#AEN506"
+>Protecting your private key</A
+></DT
+><DT
+><A
+HREF="c481.html#AEN519"
+>Selecting expiration dates and using subkeys</A
+></DT
+><DT
+><A
+HREF="c481.html#AEN526"
+>Managing your web of trust</A
+></DT
+></DL
+></DD
+><DT
+><A
+HREF="x547.html"
+>Building your web of trust</A
+></DT
+><DT
+><A
+HREF="x557.html"
+>Using GnuPG legally</A
+></DT
+></DL
+></DD
+><DT
+>5. <A
+HREF="c562.html"
+>Topics</A
+></DT
+><DD
+><DL
+><DT
+><A
+HREF="c562.html#AEN567"
+>Writing user interfaces</A
+></DT
+></DL
+></DD
+><DT
+>I. <A
+HREF="r590.html"
+>Command Reference</A
+></DT
+><DD
+><DL
+><DT
+><A
+HREF="r606.html"
+>sign</A
+> &#8212; sign a document</DT
+><DT
+><A
+HREF="r622.html"
+>detach-signature</A
+> &#8212; make a detached signature</DT
+><DT
+><A
+HREF="r636.html"
+>encrypt</A
+> &#8212; encrypt a document</DT
+><DT
+><A
+HREF="r656.html"
+>symmetric</A
+> &#8212; encrypt a document using only a symmetric encryption algorithm</DT
+><DT
+><A
+HREF="r669.html"
+>decrypt</A
+> &#8212; decrypt an encrypted document</DT
+><DT
+><A
+HREF="r684.html"
+>clearsign</A
+> &#8212; make a cleartext signature</DT
+><DT
+><A
+HREF="r697.html"
+>verify</A
+> &#8212; verify a signed document</DT
+><DT
+><A
+HREF="r711.html"
+>gen-key</A
+> &#8212; generate a new keypair</DT
+><DT
+><A
+HREF="r721.html"
+>gen-revoke</A
+> &#8212; generate a revocation certificate for a public/private keypair</DT
+><DT
+><A
+HREF="r733.html"
+>send-keys</A
+> &#8212; send keys to a key server</DT
+><DT
+><A
+HREF="r747.html"
+>recv-keys</A
+> &#8212; retrieve keys from a key server</DT
+><DT
+><A
+HREF="r762.html"
+>list-keys</A
+> &#8212; list information about keys</DT
+><DT
+><A
+HREF="r774.html"
+>list-public-keys</A
+> &#8212; list keys on public keyrings</DT
+><DT
+><A
+HREF="r786.html"
+>list-secret-keys</A
+> &#8212; list keys on secret keyrings</DT
+><DT
+><A
+HREF="r798.html"
+>list-sigs</A
+> &#8212; list information about keys including signatures</DT
+><DT
+><A
+HREF="r810.html"
+>check-sigs</A
+> &#8212; list information about keys including validated signatures</DT
+><DT
+><A
+HREF="r822.html"
+>fingerprint</A
+> &#8212; display key fingerprints</DT
+><DT
+><A
+HREF="r836.html"
+>import</A
+> &#8212; import keys to a local keyring</DT
+><DT
+><A
+HREF="r848.html"
+>fast-import</A
+> &#8212; import/merge keys</DT
+><DT
+><A
+HREF="r861.html"
+>export</A
+> &#8212; export keys from a local keyring</DT
+><DT
+><A
+HREF="r875.html"
+>export-all</A
+> &#8212; export all public keys</DT
+><DT
+><A
+HREF="r887.html"
+>export-secret-keys</A
+> &#8212; export secret keys</DT
+><DT
+><A
+HREF="r899.html"
+>edit-key</A
+> &#8212; presents a menu for operating on keys</DT
+><DT
+><A
+HREF="r1007.html"
+>sign-key</A
+> &#8212; sign a public key with a private key</DT
+><DT
+><A
+HREF="r1020.html"
+>lsign-key</A
+> &#8212; locally sign a public key with a private key</DT
+><DT
+><A
+HREF="r1033.html"
+>delete-key</A
+> &#8212; remove a public key</DT
+><DT
+><A
+HREF="r1045.html"
+>delete-secret-key</A
+> &#8212; remove a public and private key</DT
+><DT
+><A
+HREF="r1057.html"
+>store</A
+> &#8212; make only simple rfc1991 packets</DT
+><DT
+><A
+HREF="r1067.html"
+>export-ownertrust</A
+> &#8212; export assigned owner-trust values</DT
+><DT
+><A
+HREF="r1078.html"
+>import-ownertrust</A
+> &#8212; import owner-trust values</DT
+><DT
+><A
+HREF="r1090.html"
+>update-trustdb</A
+> &#8212; update the trust database </DT
+><DT
+><A
+HREF="r1100.html"
+>print-md</A
+> &#8212; display message digests</DT
+><DT
+><A
+HREF="r1114.html"
+>gen-random</A
+> &#8212; generate random data</DT
+><DT
+><A
+HREF="r1129.html"
+>gen-prime</A
+> &#8212; ?</DT
+><DT
+><A
+HREF="r1142.html"
+>version</A
+> &#8212; display version information</DT
+><DT
+><A
+HREF="r1152.html"
+>warranty</A
+> &#8212; display warranty information</DT
+><DT
+><A
+HREF="r1162.html"
+>help</A
+> &#8212; display usage information</DT
+></DL
+></DD
+><DT
+>II. <A
+HREF="r1172.html"
+>Options Reference</A
+></DT
+><DD
+><DL
+><DT
+><A
+HREF="r1182.html"
+>keyserver</A
+> &#8212; specify the keyserver to use to locate keys</DT
+><DT
+><A
+HREF="r1197.html"
+>output</A
+> &#8212; specify the file in which to place output</DT
+><DT
+><A
+HREF="r1208.html"
+>recipient</A
+> &#8212; specify the recipient of a public-key encrypted document</DT
+><DT
+><A
+HREF="r1223.html"
+>default-recipient</A
+> &#8212; specify the default recipient of a public-key encrypted document</DT
+><DT
+><A
+HREF="r1235.html"
+>default-recipient-self</A
+> &#8212; use the default key user ID as the default recipient of a public-key encrypted document</DT
+><DT
+><A
+HREF="r1248.html"
+>no-default-recipient</A
+> &#8212; ignore the options <SPAN
+CLASS="OPTION"
+>default-recipient</SPAN
+> and
+<SPAN
+CLASS="OPTION"
+>default-recipient-self</SPAN
+></DT
+><DT
+><A
+HREF="r1261.html"
+>encrypt-to</A
+> &#8212; specify an additional recipient of a public-key encrypted document</DT
+><DT
+><A
+HREF="r1278.html"
+>no-encrypt-to</A
+> &#8212; ignore the option <SPAN
+CLASS="OPTION"
+>encrypt-to</SPAN
+></DT
+><DT
+><A
+HREF="r1290.html"
+>armor</A
+> &#8212; ASCII-armor encrypted or signed output</DT
+><DT
+><A
+HREF="r1300.html"
+>no-armor</A
+> &#8212; assume input data is not ASCII armored</DT
+><DT
+><A
+HREF="r1310.html"
+>no-greeting</A
+> &#8212; suppress the opening copyright notice but do not enter batch mode</DT
+><DT
+><A
+HREF="r1320.html"
+>no-secmem-warning</A
+> &#8212; suppress warnings if insecure memory is used</DT
+><DT
+><A
+HREF="r1330.html"
+>batch</A
+> &#8212; use batch mode</DT
+><DT
+><A
+HREF="r1341.html"
+>no-batch</A
+> &#8212; disable batch mode</DT
+><DT
+><A
+HREF="r1353.html"
+>local-user</A
+> &#8212; specifies a user id to use for signing</DT
+><DT
+><A
+HREF="r1365.html"
+>default-key</A
+> &#8212; specifies a user ID as a default user ID for signatures</DT
+><DT
+><A
+HREF="r1377.html"
+>completes-needed</A
+> &#8212; specifies the number of fully-trusted people needed to validate a new key.</DT
+><DT
+><A
+HREF="r1390.html"
+>marginals-needed</A
+> &#8212; specifies the number of marginally-trusted people needed to validate
+a new key.</DT
+><DT
+><A
+HREF="r1403.html"
+>load-extension</A
+> &#8212; specifies an extension to load.</DT
+><DT
+><A
+HREF="r1414.html"
+>rfc1991</A
+> &#8212; try to be more RFC1991 (PGP 2.x) compliant</DT
+><DT
+><A
+HREF="r1424.html"
+>allow-non-selfsigned-uid</A
+> &#8212; allow the import of keys with user IDs which are not self-signed</DT
+><DT
+><A
+HREF="r1434.html"
+>cipher-algo</A
+> &#8212; use a specified algorithm as the symmetric cipher</DT
+><DT
+><A
+HREF="r1449.html"
+>compress-algo</A
+> &#8212; use a specified compression algorithm</DT
+><DT
+><A
+HREF="r1460.html"
+>z</A
+> &#8212; set compression level</DT
+><DT
+><A
+HREF="r1472.html"
+>verbose</A
+> &#8212; provide additional information during processing</DT
+><DT
+><A
+HREF="r1482.html"
+>no-verbose</A
+> &#8212; resets verbosity to none</DT
+><DT
+><A
+HREF="r1494.html"
+>quiet</A
+> &#8212; supress informational output</DT
+><DT
+><A
+HREF="r1504.html"
+>textmode</A
+> &#8212; use canonical text mode</DT
+><DT
+><A
+HREF="r1514.html"
+>dry-run</A
+> &#8212; do not make changes</DT
+><DT
+><A
+HREF="r1524.html"
+>interactive</A
+> &#8212; prompt before overwriting files</DT
+><DT
+><A
+HREF="r1534.html"
+>yes</A
+> &#8212; assume ``yes'' to most questions</DT
+><DT
+><A
+HREF="r1544.html"
+>no</A
+> &#8212; assume ``no'' to most questions</DT
+><DT
+><A
+HREF="r1554.html"
+>always-trust</A
+> &#8212; skip key validation</DT
+><DT
+><A
+HREF="r1564.html"
+>skip-verify</A
+> &#8212; skip signature verification</DT
+><DT
+><A
+HREF="r1574.html"
+>keyring</A
+> &#8212; add a keyring to the list of keyrings</DT
+><DT
+><A
+HREF="r1593.html"
+>secret-keyring</A
+> &#8212; add a secret keyring</DT
+><DT
+><A
+HREF="r1606.html"
+>no-default-keyring</A
+> &#8212; do not add the default keyrings to the list of keyrings</DT
+><DT
+><A
+HREF="r1616.html"
+>homedir</A
+> &#8212; set the home directory</DT
+><DT
+><A
+HREF="r1627.html"
+>charset</A
+> &#8212; set the name of the native character set.</DT
+><DT
+><A
+HREF="r1655.html"
+>no-literal</A
+> &#8212; ?</DT
+><DT
+><A
+HREF="r1665.html"
+>set-filesize</A
+> &#8212; ?</DT
+><DT
+><A
+HREF="r1676.html"
+>with-fingerprint</A
+> &#8212; modifies key listing output</DT
+><DT
+><A
+HREF="r1690.html"
+>with-colons</A
+> &#8212; modifies key listing output</DT
+><DT
+><A
+HREF="r1702.html"
+>with-key-data</A
+> &#8212; modifies key listing output</DT
+><DT
+><A
+HREF="r1714.html"
+>lock-once</A
+> &#8212; locks the databases once</DT
+><DT
+><A
+HREF="r1724.html"
+>lock-multiple</A
+> &#8212; locks the databases each time they are used</DT
+><DT
+><A
+HREF="r1736.html"
+>passphrase-fd</A
+> &#8212; read the passphrase from a different input stream</DT
+><DT
+><A
+HREF="r1748.html"
+>force-mdc</A
+> &#8212; force the use of encryption with appended manipulation code</DT
+><DT
+><A
+HREF="r1758.html"
+>force-v3-sigs</A
+> &#8212; force the use of v3 signatures on data</DT
+><DT
+><A
+HREF="r1768.html"
+>openpgp</A
+> &#8212; reset all packet, cipher, and digest options to the OpenPGP specification</DT
+><DT
+><A
+HREF="r1794.html"
+>utf8-strings</A
+> &#8212; assume that arguments are provided as UTF8 strings</DT
+><DT
+><A
+HREF="r1804.html"
+>no-utf8-strings</A
+> &#8212; assume that arguments are not provided as UTF8 strings</DT
+><DT
+><A
+HREF="r1817.html"
+>no-options</A
+> &#8212; use no options file</DT
+><DT
+><A
+HREF="r1827.html"
+>debug</A
+> &#8212; set debug flags</DT
+><DT
+><A
+HREF="r1873.html"
+>debug-all</A
+> &#8212; set all useful debugging flags</DT
+><DT
+><A
+HREF="r1885.html"
+>status-fd</A
+> &#8212; write status messages to an alternative output stream</DT
+><DT
+><A
+HREF="r1898.html"
+>logger-fd</A
+> &#8212; write log messages to an alternative output stream</DT
+><DT
+><A
+HREF="r1910.html"
+>no-comment</A
+> &#8212; do not write comment packets</DT
+><DT
+><A
+HREF="r1920.html"
+>comment</A
+> &#8212; set the comment string to use in cleartext signatures</DT
+><DT
+><A
+HREF="r1931.html"
+>default-comment</A
+> &#8212; use the standard comment string in cleartext signatures</DT
+><DT
+><A
+HREF="r1943.html"
+>no-version</A
+> &#8212; omit the version string in clear text signatures</DT
+><DT
+><A
+HREF="r1953.html"
+>emit-version</A
+> &#8212; emit the version string in cleartext signatures</DT
+><DT
+><A
+HREF="r1965.html"
+>notation-data</A
+> &#8212; add data to a signature as notation data</DT
+><DT
+><A
+HREF="r1983.html"
+>set-policy-url</A
+> &#8212; set the policy URL for signatures</DT
+><DT
+><A
+HREF="r1995.html"
+>set-filename</A
+> &#8212; sets the filename stored in encrypted or signed messages</DT
+><DT
+><A
+HREF="r2007.html"
+>use-embedded-filename</A
+> &#8212; use the filename embedded in a message for storing its plaintext or verified
+version</DT
+><DT
+><A
+HREF="r2017.html"
+>max-cert-depth</A
+> &#8212; set the maximum depth of a certification chain</DT
+><DT
+><A
+HREF="r2029.html"
+>digest-algo</A
+> &#8212; set the message digest algorithm</DT
+><DT
+><A
+HREF="r2044.html"
+>s2k-cipher-algo</A
+> &#8212; use a specified algorithm as the symmetric cipher for encrypting private keys</DT
+><DT
+><A
+HREF="r2059.html"
+>s2k-digest-algo</A
+> &#8212; set the message digest algorithm for mangling passphrases protecting private
+keys</DT
+><DT
+><A
+HREF="r2071.html"
+>s2k-mode</A
+> &#8212; sets how passphrases are mangled</DT
+><DT
+><A
+HREF="r2086.html"
+>disable-cipher-algo</A
+> &#8212; prevents a symmetric cipher from being used</DT
+><DT
+><A
+HREF="r2098.html"
+>disable-pubkey-algo</A
+> &#8212; prevents a public key cipher from being used</DT
+><DT
+><A
+HREF="r2110.html"
+>throw-keyid</A
+> &#8212; do not put key IDs into encrypted packets</DT
+><DT
+><A
+HREF="r2120.html"
+>not-dash-escaped</A
+> &#8212; changes the format of cleartext signatures</DT
+><DT
+><A
+HREF="r2130.html"
+>escape-from-lines</A
+> &#8212; modifies messages beginning with ``From'' when cleartext signing</DT
+></DL
+></DD
+></DL
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="c14.html"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Getting Started</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>
