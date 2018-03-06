@@ -1,5 +1,13 @@
 Encryption / Decryption
 
+The GNU Privacy Handbook - https://www.gnupg.org/gph/en/manual/book1.html
+
+Youtube Videos:
+  GnuPG Part One https://www.youtube.com/watch?v=IF-MchgZ2Os
+  GnuPG Part Two https://www.youtube.com/watch?v=R-Dw7UXH00c
+  GnuPG Part Three https://www.youtube.com/watch?v=JOBJPwyByyI
+  NITC-GnuPG Part 3 https://www.youtube.com/watch?v=xAGfWyNgi2Q
+
 Encrypt a message to standard output.
   gpg -ea
   Enter your recipients and end with an empty line.
@@ -274,10 +282,18 @@ Create a key.
 
 Revoke a Key.
 
-	gpg --gen-revoke
+	gpg --gen-revoke THEKEYID > revoked.key
 
 	This creates a revocation certificate. To be able to do this, you need a secret key, else anyone could revoke your certificate. This has one disadvantage. If I do not know the passphrase the key has become useless. But I cannot revoke the key! To overcome this problem it is wise to create a revoke license when you create a key pair. And if you do so, keep it safe! This can be on disk, paper, etc. Make sure that this certificate will not fall into wrong hands!!!! If you don't someone else can issue the revoke certificate for your key and make it useless.
 
+  You will need to enter the revoke reason for the key and an optional comment.
+
+  Once you have the revocation certificate, you will need to import it so that the key will get revoked.
+
+  gpg --import revoked.key
+  Type: gpg --list-keys and you will see that the key has been revoked.
+
+  Next, you will have send the revoked key to the key server. This is the same method as sending a normal key except this one has been revoked. When the server receives the revoked key, it will be removed from the server.
 
 Key Administration:
 With the GnuPG system comes a file that acts as some kind of database. In this file all data regarding keys with the information that comes with the keys is stored.
@@ -468,3 +484,20 @@ case $1 in
    ;;
 esac
 }
+
+To send your public key to a keyserver:
+  gpg --keyserver the.keyserver.name.com --send-keys YOURKEYID
+  Example: gpg --keyserver keyserver.ubuntu.com --send-keys 5DD98B3E
+
+To receive a public key from a keyserver:
+  gpg --keyserver the.keyserver.name.com --recv-keys THEKEYID
+  Example: gpg --keyserver keyserver.ubuntu.com --recv-keys 5DD98B3E
+
+To view your trust database and see the marginal and other trust information type:
+  gpg --update-trustdb
+
+Before a key can be trusted it must be signed and the trust level applied by the key owner. Marginally (Marginal) trusted keys can also be trusted if 3 or more people you trust have chosen to trust the same key that you have marginally trusted. Or if 3 or more marginally trusted people marginally trust the same key then it will be considered trusted by your key.
+
+There is a graphical user interface for GnuPG call GPG Privacy Assistant (GPA). It can be installed by typing:
+  sudo apt-get -y install gpa
+  sudo dnf -y install gpa
