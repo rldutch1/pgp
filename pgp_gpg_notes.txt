@@ -8,6 +8,23 @@ Youtube Videos:
   GnuPG Part Three https://www.youtube.com/watch?v=JOBJPwyByyI
   NITC-GnuPG Part 3 https://www.youtube.com/watch?v=xAGfWyNgi2Q
 
+Generate/Create Key:
+  Create / generate GPG/PGP keys:
+	  gpg2 --full-gen-key
+	  gpg --gen-key
+
+  Send key to default key server:
+	  gpg --send-key KEYNAME
+
+  Send key to specific key server:
+	  gpg --keyserver hkp://pgp.mit.edu --send-key KEYNAME
+
+  Export ascii armored key:
+	  gpg --export --armor jqdoe@example.com > jqdoe-pubkey.asc
+	  gpg --export-secret-keys --armor jqdoe@example.com > jqdoe-privkey.asc
+	  Use a double greater than symbol to export both public and private to the same file ">>".
+
+
 Encrypt a message to standard output.
   gpg -ea
   Enter your recipients and end with an empty line.
@@ -16,6 +33,9 @@ Encrypt a message to standard output.
 
   If you want to encrypt the above message to a file you can type: gpg -ea > filename.txt
   then do the steps above.
+  Enter your recipients and end with an empty line.
+  Type your message that you want to encrypt.
+  Press Control+D and your encrypted message will be sent to filename.txt.
 
 Encrypt a single file (creates a binary file). This option may be combined with --sign.
 
@@ -32,6 +52,10 @@ Encrypt a single file (creates an ASCII file). This option may be combined with 
 	or
 
 	gpg --armor --encrypt filename
+
+	or
+
+	gpg -ea filename
 
 This is a special version of the --encrypt command. The command expects the files to be encrypted either on the command line or reads the filenames from stdin; each name must be on separate line. The command is intended for a quick encryption of multiple files.
 Encrypt multiple files. This option may be combined with --sign.
@@ -57,6 +81,21 @@ Encrypt to a recipient.
 	or encrypt and sign.
 
 	gpg -e -r recipient -s filename
+
+Password encrypt and sign a file:
+	gpg -c -s filename
+
+UUEncode a file before ascii encrypting:
+	uuencode filename filename > filename.uue
+	gpg -a -e filename.uue
+
+UUEncode a file before normal encrypting:
+	uuencode filename filename > filename.uue
+	gpg --encrypt filename.uue
+
+Decrypt UUEncoded file with normal encryption then UUDecode it:
+	gpg --decrypt filename > filename.uue
+	uudecode filename.uue
 
 Decrypt a message in standard out (stout).
   gpg
