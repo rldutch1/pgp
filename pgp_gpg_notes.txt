@@ -1,5 +1,30 @@
 Encryption / Decryption
 
+The GNU Privacy Handbook - https://www.gnupg.org/gph/en/manual/book1.html
+
+Youtube Videos:
+  GnuPG Part One https://www.youtube.com/watch?v=IF-MchgZ2Os
+  GnuPG Part Two https://www.youtube.com/watch?v=R-Dw7UXH00c
+  GnuPG Part Three https://www.youtube.com/watch?v=JOBJPwyByyI
+  NITC-GnuPG Part 3 https://www.youtube.com/watch?v=xAGfWyNgi2Q
+
+Generate/Create Key:
+  Create / generate GPG/PGP keys:
+	  gpg2 --full-gen-key
+	  gpg --gen-key
+
+  Send key to default key server:
+	  gpg --send-key KEYNAME
+
+  Send key to specific key server:
+	  gpg --keyserver hkp://pgp.mit.edu --send-key KEYNAME
+
+  Export ascii armored key:
+	  gpg --export --armor jqdoe@example.com > jqdoe-pubkey.asc
+	  gpg --export-secret-keys --armor jqdoe@example.com > jqdoe-privkey.asc
+	  Use a double greater than symbol to export both public and private to the same file ">>".
+
+
 Encrypt a message to standard output.
   gpg -ea
   Enter your recipients and end with an empty line.
@@ -8,6 +33,9 @@ Encrypt a message to standard output.
 
   If you want to encrypt the above message to a file you can type: gpg -ea > filename.txt
   then do the steps above.
+  Enter your recipients and end with an empty line.
+  Type your message that you want to encrypt.
+  Press Control+D and your encrypted message will be sent to filename.txt.
 
 Encrypt a single file (creates a binary file). This option may be combined with --sign.
 
@@ -24,6 +52,10 @@ Encrypt a single file (creates an ASCII file). This option may be combined with 
 	or
 
 	gpg --armor --encrypt filename
+
+	or
+
+	gpg -ea filename
 
 This is a special version of the --encrypt command. The command expects the files to be encrypted either on the command line or reads the filenames from stdin; each name must be on separate line. The command is intended for a quick encryption of multiple files.
 Encrypt multiple files. This option may be combined with --sign.
@@ -51,9 +83,23 @@ Encrypt to a recipient.
 	gpg -e -r recipient -s filename
 
 Use -u to specify the secret key to be used, and -r to specify the public key of the recipient.
-  As an example: gpg -e -u "Billy Bob" -r "Nancy Bob" mydata.tar
-  gpg -e -u "Sender User Name" -r "Receiver User Name" somefile
+    As an example: gpg -e -u "Billy Bob" -r "Nancy Bob" mydata.tar
+    gpg -e -u "Sender User Name" -r "Receiver User Name" somefile
 
+Password encrypt and sign a file:
+	gpg -c -s filename
+
+UUEncode a file before ascii encrypting:
+	uuencode filename filename > filename.uue
+	gpg -a -e filename.uue
+
+UUEncode a file before normal encrypting:
+	uuencode filename filename > filename.uue
+	gpg --encrypt filename.uue
+
+Decrypt UUEncoded file with normal encryption then UUDecode it:
+	gpg --decrypt filename > filename.uue
+	uudecode filename.uue
 
 Decrypt a message in standard out (stout).
   gpg
@@ -279,10 +325,18 @@ Create a key.
 
 Revoke a Key.
 
-	gpg --gen-revoke
+	gpg --gen-revoke THEKEYID > revoked.key
 
 	This creates a revocation certificate. To be able to do this, you need a secret key, else anyone could revoke your certificate. This has one disadvantage. If I do not know the passphrase the key has become useless. But I cannot revoke the key! To overcome this problem it is wise to create a revoke license when you create a key pair. And if you do so, keep it safe! This can be on disk, paper, etc. Make sure that this certificate will not fall into wrong hands!!!! If you don't someone else can issue the revoke certificate for your key and make it useless.
 
+  You will need to enter the revoke reason for the key and an optional comment.
+
+  Once you have the revocation certificate, you will need to import it so that the key will get revoked.
+
+  gpg --import revoked.key
+  Type: gpg --list-keys and you will see that the key has been revoked.
+
+  Next, you will have send the revoked key to the key server. This is the same method as sending a normal key except this one has been revoked. When the server receives the revoked key, it will be removed from the server.
 
 Key Administration:
 With the GnuPG system comes a file that acts as some kind of database. In this file all data regarding keys with the information that comes with the keys is stored.
@@ -346,50 +400,58 @@ http://www.dewinter.com/gnupg_howto/english/GPGMiniHowto-3.html#ss3.5
 https://www.gnupg.org/documentation/howtos.html
 https://github.com/rldutch1/pgp/blob/master/commandline_switches.html
 
-
-Here is a GPG function that I have created and use on my Mac and Linux computers (it works on Windows too with Git or Cygwin installed). I named it "pgp" so that it is different from gpg and will not conflict.
+Here is a PGP function that I have created and use on my Mac and Linux computers (it works on Windows too with Git or Cygwin installed). I named it "pgp" so that it is different from gpg and will not conflict.
 
 pgp(){
-clear
 case $1 in
         ascii)
-				echo "ASCII Encrypting... " $2
+        echo "ASCII Encrypting... " $2
         gpg -a -e $2
-				echo "..." >> $2;rm -f $2
-				echo $2 " has been deleted!"
+        echo "..." >> $2;rm -f $2
+        echo $2 " has been deleted!"
         ;;
         uue)
-  			echo "UUEncoding..." $2
-  			uuencode $2 $2 > $2.uue
- 				echo "ASCII Encrypting..." $2.uue
- 				gpg -a -e $2.uue
- 				echo "..." > $2.uue;rm -f $2 $2.uue
- 				echo $2 " has been deleted!"
-  			;;
+        echo "UUEncoding..." $2
+        uuencode $2 $2 > $2.uue
+        echo "ASCII Encrypting..." $2.uue
+        gpg -a -e $2.uue
+        echo "..." > $2.uue;rm -f $2 $2.uue
+        echo $2 " has been deleted!"
+        ;;
         uuegpg)
-  			echo "UUEncoding..." $2
-  			uuencode $2 $2 > $2.uue
- 				echo "Encrypting..." $2.uue
- 				gpg --encrypt $2.uue
- 				echo "..." > $2.uue;rm -f $2 $2.uue
- 				echo $2 " has been deleted!"
-  			;;
+        echo "UUEncoding..." $2
+        uuencode $2 $2 > $2.uue
+        echo "Encrypting..." $2.uue
+        gpg --encrypt $2.uue
+        echo "..." > $2.uue;rm -f $2 $2.uue
+        echo $2 " has been deleted!"
+        ;;
         uuedecrypt)
- 				gpg --decrypt $2 > $2.uue
-  			echo "Decoding..." $2
-  			uudecode $2.uue;
-  			echo "..." > $2.uue;rm -f $2.uue
- 				echo $2 " has been decoded!"
-  			;;
+        gpg --decrypt $2 > $2.uue
+        echo "Decoding..." $2
+        uudecode $2.uue;
+        echo "..." > $2.uue;rm -f $2.uue
+        echo $2 " has been decoded!"
+        ;;
         passencrypt)
         echo "Encrypting..." $2
         gpg -c -s $2
-				echo $2 " has been password encrypted!"
+        echo $2 " has been password encrypted!"
         ;;
         clearsign)
         echo "Signing..." $2
         gpg --clearsign $2
-				echo $2 " has been signed!"
+        echo $2 " has an associated signature file!"
+        ;;
+        sign)
+        echo "Signing..." $2
+        gpg --sign $2
+        echo $2 " has been signed!"
+        ;;
+        verify)
+        echo "Signing..." $2
+        gpg --verify $2
+        echo $2 " verify status!"
         ;;
         decrypto)
         #gpg --decrypt $2
@@ -399,7 +461,7 @@ case $1 in
         gpg --output $2 --decrypt $3
         fi
         ;;
-				decrypt)
+        decrypt)
         if [ ! $2 ] ; then
         echo "Syntax: pgp decrypt encryptedfile.asc"
         else
@@ -417,15 +479,15 @@ case $1 in
         gpg --import $2
         echo $2 " has been imported!"
         ;;
-				list)
-				gpg --list-keys
-				;;
-				fingerprint)
-				gpg --fingerprint $2
-				;;
-				fingerprint_from_file)
-				gpg --with-fingerprint $2
-				;;
+        list)
+        gpg --list-keys
+        ;;
+        fingerprint)
+        gpg --fingerprint $2
+        ;;
+        fingerprint_from_file)
+        gpg --with-fingerprint $2
+        ;;
         delete-keys)
         echo "Deleting..." $2
         gpg --delete-keys $2
@@ -437,24 +499,25 @@ case $1 in
 	vi $xyzrh1.txt; pgp ascii $xyzrh1.txt
 	;;
         *)
-    		message00="pgp ascii textfile"
-    		message01="pgp uue filename"
-    		message02="pgp uuegpg filename"
-    		message03="pgp uuedecrypt filename"
-				message04="pgp passencrypt textfile"
-				message05="pgp clearsign textfile"
-				message06="pgp decrypt encryptedfile.tar.gpg"
-				message07="pgp decrypto outputfile.tar encryptedfile.tar.gpg"
-				message08="pgp encrypt filename"
-				message09="pgp list"
-				message10="pgp fingerprint 5DD98B3E"
-				message11="pgp fingerprint_from_file file_with_key"
-				message12="pgp import filename.asc"
-				message13="pgp delete-keys 5DD98B3E"
-				message14="gpg --edit-key 5DD98B3E"
-				message15="pgp message"
+        message00="gpg --edit-key 5DD98B3E"
+      	message01="pgp ascii textfile"
+      	message02="pgp clearsign textfile"
+      	message03="pgp decrypt encryptedfile.tar.gpg"
+      	message04="pgp decrypto outputfile.tar encryptedfile.tar.gpg"
+      	message05="pgp delete-keys 5DD98B3E"
+      	message06="pgp encrypt filename"
+      	message07="pgp fingerprint 5DD98B3E"
+      	message08="pgp fingerprint_from_file file_with_key"
+      	message09="pgp import filename.asc"
+      	message10="pgp list"
+      	message11="pgp message"
+      	message12="pgp passencrypt textfile"
+      	message13="pgp sign textfile"
+      	message14="pgp uue filename"
+      	message15="pgp uuegpg filename"
+      	message16="pgp uuedecrypt filename"
+      	message17="pgp verify filename"
         echo $message00
-        echo $message09
         echo $message01
         echo $message02
         echo $message03
@@ -463,13 +526,35 @@ case $1 in
         echo $message06
         echo $message07
         echo $message08
+        echo $message09
         echo $message10
         echo $message11
         echo $message12
         echo $message13
         echo $message14
         echo $message15
+        echo $message16
+        echo $message17
         echo " "
    ;;
 esac
 }
+
+To send your public key to a keyserver:
+  gpg --keyserver the.keyserver.name.com --send-keys YOURKEYID
+  Example: gpg --keyserver keyserver.ubuntu.com --send-keys 5DD98B3E
+
+To receive a public key from a keyserver:
+  gpg --keyserver the.keyserver.name.com --recv-keys THEKEYID
+  Example: gpg --keyserver keyserver.ubuntu.com --recv-keys 5DD98B3E
+
+To view your trust database and see the marginal and other trust information type:
+  gpg --update-trustdb
+
+Before a key can be trusted it must be signed and the trust level applied by the key owner. Marginally (Marginal) trusted keys can also be trusted if 3 or more people you trust have chosen to trust the same key that you have marginally trusted. Or if 3 or more marginally trusted people marginally trust the same key then it will be considered trusted by your key.
+
+There is a graphical user interface for GnuPG called GPG Privacy Assistant (GPA). It can be installed by typing:
+  sudo apt-get -y install gpa
+  sudo dnf -y install gpa
+
+On Fedora Linux, the passphrase cache timeout was 300 seconds (5 minutes). I couldn't find where I could change that setting. I ended up installing dconf-editor and I was able to change the passphrase cache. I added screenshots (dconf-editor_settings##.png.

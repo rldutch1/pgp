@@ -1,0 +1,258 @@
+<!DOCTYPE HTML PUBLIC "-//Norman Walsh//DTD DocBook HTML 1.0//EN">
+<HTML
+><HEAD
+><TITLE
+>Topics</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet"><LINK
+REL="HOME"
+TITLE="The GNU Privacy Handbook"
+HREF="book1.html"><LINK
+REL="PREVIOUS"
+TITLE="Using GnuPG legally"
+HREF="x557.html"><LINK
+REL="NEXT"
+TITLE="Command Reference"
+HREF="r590.html"></HEAD
+><BODY
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>The GNU Privacy Handbook</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="x557.html"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="r590.html"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="CHAPTER"
+><H1
+><A
+NAME="MODULES"
+>Chapter 5. Topics</A
+></H1
+><P
+>This chapter covers miscellaneous topics that do not fit
+elsewhere in the user manual.
+As topics are added, they may be collected and factored into chapters
+that stand on their own.
+If you would like to see a particular topic covered, please suggest it.
+Even better, volunteer to write a first draft covering your suggested topic!</P
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="AEN567"
+>Writing user interfaces</A
+></H1
+><P
+><A
+HREF="http://www.cs.cmu.edu/~alma"
+TARGET="_top"
+>Alma Whitten</A
+> and 
+<A
+HREF="http://www.cs.berkeley.edu/~tygar"
+TARGET="_top"
+>Doug Tygar</A
+> have done a 
+<A
+HREF="http://reports-archive.adm.cs.cmu.edu/anon/1998/abstracts/98-155.html"
+TARGET="_top"
+>study</A
+>
+on NAI's PGP 5.0 user interface and came to the conclusion 
+that novice users find PGP confusing and frustrating.
+In their human factors study, only four out of twelve test subjects
+managed to correctly send encrypted email to their team members, 
+and three out of twelve emailed the secret without encryption. 
+Furthermore, half of the test subjects had a technical background.</P
+><P
+>These results are not surprising.
+PGP 5.0 has a nice user interface that is excellent if you already
+understand how public-key encryption works and are familiar with
+the web-of-trust key management model specified by OpenPGP.
+Unfortunately, novice users understand neither public-key encryption
+nor key management, and the user interface does little to help.</P
+><P
+>You should certainly read Whitten and Tygar's report if you are writing
+a user interface.
+It gives specific comments from each of the test subjects, and those
+details are enlightening. 
+For example, it would appear that many of subjects believed that a
+message being sent to other people should be encrypted to the test
+subject's own public key.
+Consider it for a minute, and you will see that it is an easy mistake
+to make.
+In general, novice users have difficulty understanding the different
+roles of the public key and private key when using GnuPG.
+As a user interface designer, you should try to make it clear at 
+all times when one of the two keys is being used.
+You could also use wizards or other common GUI techniques for
+guiding the user through common tasks such as key generation where
+extra steps such as generating a key revocation certification and 
+making a backup are all but essential for using GnuPG correctly.
+Other comments from the paper include the following.
+<P
+></P
+><UL
+><LI
+><P
+>Security is usually a secondary goal; people want to send
+email, browse, and so on.  
+Do not assume users will be motivated to read manuals or go 
+looking for security controls.</P
+></LI
+><LI
+><P
+>The security of a networked computer is only as strong as its 
+weakest component. 
+Users need to be guided to attend to all aspects of their security, 
+not left to proceed through random exploration as they might with a 
+word processor or a spreadsheet.</P
+></LI
+><LI
+><P
+>Consistently use the same terms for the same actions.
+Do not alternate between synonyms like ``encrypt'' and 
+``encipher''.</P
+></LI
+><LI
+><P
+>For inexperienced users, simplify the display. 
+Too much information hides the important information.
+An initial display configuration could concentrate on giving
+the user the correct model of the relationship between public 
+and private keys and a clear understanding of the functions 
+for acquiring and distributing keys.</P
+></LI
+></UL
+></P
+><P
+>Designing an effective user interface for key management is even more
+difficult.
+The OpenPGP web-of-trust model is unfortunately quite obtuse.
+For example, the specification imposes three arbitrary trust levels
+onto the user: none, marginal, and complete.
+All degrees of trust felt by the user must be fit into one of those
+three cubby holes.
+The key validation algorithm is also difficult for non-computer scientists
+to understand, particularly the notions of ``marginals needed'' and
+``completes needed''.
+Since the web-of-trust model is well-specified and cannot be changed,
+you will have to do your best and design a user interface that helps
+to clarify it for the user.
+A definite improvement, for example, would be to generate a diagram of how
+a key was validated when requested by the user.
+Relevant comments from the paper include the following.
+<P
+></P
+><UL
+><LI
+><P
+>Users are likely to be uncertain on how and when to grant accesses.</P
+></LI
+><LI
+><P
+>Place a high priority on making sure users understand their
+security well enough to prevent them from making potentially
+high-cost mistakes.  
+Such mistakes include
+accidentally deleting the private key,
+accidentally publicizing a key, accidentally revoking a key,
+forgetting the pass phrase, and failing to back up the key rings.</P
+></LI
+></UL
+></P
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="x557.html"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="book1.html"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="r590.html"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Using GnuPG legally</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>Command Reference</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

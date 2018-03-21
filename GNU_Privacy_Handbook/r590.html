@@ -1,0 +1,378 @@
+<!DOCTYPE HTML PUBLIC "-//Norman Walsh//DTD DocBook HTML 1.0//EN">
+<HTML
+><HEAD
+><TITLE
+>Command Reference</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet"><LINK
+REL="HOME"
+TITLE="The GNU Privacy Handbook"
+HREF="book1.html"><LINK
+REL="PREVIOUS"
+TITLE="Topics"
+HREF="c562.html"><LINK
+REL="NEXT"
+TITLE="sign"
+HREF="r606.html"></HEAD
+><BODY
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>The GNU Privacy Handbook</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="c562.html"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="r606.html"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><DIV
+CLASS="TITLEPAGE"
+><H1
+CLASS="TITLE"
+>I. Command Reference</H1
+><DIV
+CLASS="TOC"
+><DL
+><DT
+><B
+>Table of Contents</B
+></DT
+><DT
+><A
+HREF="r606.html"
+>sign</A
+> &#8212; sign a document</DT
+><DT
+><A
+HREF="r622.html"
+>detach-signature</A
+> &#8212; make a detached signature</DT
+><DT
+><A
+HREF="r636.html"
+>encrypt</A
+> &#8212; encrypt a document</DT
+><DT
+><A
+HREF="r656.html"
+>symmetric</A
+> &#8212; encrypt a document using only a symmetric encryption algorithm</DT
+><DT
+><A
+HREF="r669.html"
+>decrypt</A
+> &#8212; decrypt an encrypted document</DT
+><DT
+><A
+HREF="r684.html"
+>clearsign</A
+> &#8212; make a cleartext signature</DT
+><DT
+><A
+HREF="r697.html"
+>verify</A
+> &#8212; verify a signed document</DT
+><DT
+><A
+HREF="r711.html"
+>gen-key</A
+> &#8212; generate a new keypair</DT
+><DT
+><A
+HREF="r721.html"
+>gen-revoke</A
+> &#8212; generate a revocation certificate for a public/private keypair</DT
+><DT
+><A
+HREF="r733.html"
+>send-keys</A
+> &#8212; send keys to a key server</DT
+><DT
+><A
+HREF="r747.html"
+>recv-keys</A
+> &#8212; retrieve keys from a key server</DT
+><DT
+><A
+HREF="r762.html"
+>list-keys</A
+> &#8212; list information about keys</DT
+><DT
+><A
+HREF="r774.html"
+>list-public-keys</A
+> &#8212; list keys on public keyrings</DT
+><DT
+><A
+HREF="r786.html"
+>list-secret-keys</A
+> &#8212; list keys on secret keyrings</DT
+><DT
+><A
+HREF="r798.html"
+>list-sigs</A
+> &#8212; list information about keys including signatures</DT
+><DT
+><A
+HREF="r810.html"
+>check-sigs</A
+> &#8212; list information about keys including validated signatures</DT
+><DT
+><A
+HREF="r822.html"
+>fingerprint</A
+> &#8212; display key fingerprints</DT
+><DT
+><A
+HREF="r836.html"
+>import</A
+> &#8212; import keys to a local keyring</DT
+><DT
+><A
+HREF="r848.html"
+>fast-import</A
+> &#8212; import/merge keys</DT
+><DT
+><A
+HREF="r861.html"
+>export</A
+> &#8212; export keys from a local keyring</DT
+><DT
+><A
+HREF="r875.html"
+>export-all</A
+> &#8212; export all public keys</DT
+><DT
+><A
+HREF="r887.html"
+>export-secret-keys</A
+> &#8212; export secret keys</DT
+><DT
+><A
+HREF="r899.html"
+>edit-key</A
+> &#8212; presents a menu for operating on keys</DT
+><DT
+><A
+HREF="r1007.html"
+>sign-key</A
+> &#8212; sign a public key with a private key</DT
+><DT
+><A
+HREF="r1020.html"
+>lsign-key</A
+> &#8212; locally sign a public key with a private key</DT
+><DT
+><A
+HREF="r1033.html"
+>delete-key</A
+> &#8212; remove a public key</DT
+><DT
+><A
+HREF="r1045.html"
+>delete-secret-key</A
+> &#8212; remove a public and private key</DT
+><DT
+><A
+HREF="r1057.html"
+>store</A
+> &#8212; make only simple rfc1991 packets</DT
+><DT
+><A
+HREF="r1067.html"
+>export-ownertrust</A
+> &#8212; export assigned owner-trust values</DT
+><DT
+><A
+HREF="r1078.html"
+>import-ownertrust</A
+> &#8212; import owner-trust values</DT
+><DT
+><A
+HREF="r1090.html"
+>update-trustdb</A
+> &#8212; update the trust database </DT
+><DT
+><A
+HREF="r1100.html"
+>print-md</A
+> &#8212; display message digests</DT
+><DT
+><A
+HREF="r1114.html"
+>gen-random</A
+> &#8212; generate random data</DT
+><DT
+><A
+HREF="r1129.html"
+>gen-prime</A
+> &#8212; ?</DT
+><DT
+><A
+HREF="r1142.html"
+>version</A
+> &#8212; display version information</DT
+><DT
+><A
+HREF="r1152.html"
+>warranty</A
+> &#8212; display warranty information</DT
+><DT
+><A
+HREF="r1162.html"
+>help</A
+> &#8212; display usage information</DT
+></DL
+></DIV
+><DIV
+CLASS="PARTINTRO"
+><DIV
+CLASS="SECT1"
+><H1
+CLASS="SECT1"
+><A
+NAME="AEN595"
+>Key specifiers</A
+></H1
+><P
+>Many commands and options require a <I
+CLASS="FIRSTTERM"
+>key specifier</I
+>.
+A key specifier is the key ID or any portion of ther user ID of
+a key.
+Consider the following example.
+
+<TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SCREEN"
+><TT
+CLASS="PROMPT"
+>alice%</TT
+> <TT
+CLASS="USERINPUT"
+><B
+>gpg --list-keys chloe</B
+></TT
+>
+pub  1024D/B87DBA93 1999-06-28 Chloe (Jester) &lt;chloe@cyb.org&#62;
+uid                            Chloe (Plebian) &lt;chloe@tel.net&#62;
+sub  2048g/B7934539 1999-06-28</PRE
+></TD
+></TR
+></TABLE
+>
+
+For this key, <TT
+CLASS="LITERAL"
+>0xB87DBA93</TT
+>,
+<TT
+CLASS="LITERAL"
+>Chloe</TT
+>,
+<TT
+CLASS="LITERAL"
+>Plebian</TT
+>, and
+<TT
+CLASS="LITERAL"
+>oe@tel</TT
+>
+are all examples of key specifiers that match the above key.</P
+></DIV
+></DIV
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="c562.html"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="book1.html"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="r606.html"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>Topics</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+>&nbsp;</TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>sign</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>

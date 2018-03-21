@@ -1,0 +1,210 @@
+<!DOCTYPE HTML PUBLIC "-//Norman Walsh//DTD DocBook HTML 1.0//EN">
+<HTML
+><HEAD
+><TITLE
+>keyring</TITLE
+><META
+NAME="GENERATOR"
+CONTENT="Modular DocBook HTML Stylesheet"><LINK
+REL="HOME"
+TITLE="The GNU Privacy Handbook"
+HREF="book1.html"><LINK
+REL="UP"
+TITLE="Options Reference"
+HREF="r1172.html"><LINK
+REL="PREVIOUS"
+TITLE="skip-verify"
+HREF="r1564.html"><LINK
+REL="NEXT"
+TITLE="secret-keyring"
+HREF="r1593.html"></HEAD
+><BODY
+><DIV
+CLASS="NAVHEADER"
+><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TH
+COLSPAN="3"
+ALIGN="center"
+>The GNU Privacy Handbook</TH
+></TR
+><TR
+><TD
+WIDTH="10%"
+ALIGN="left"
+VALIGN="bottom"
+><A
+HREF="r1564.html"
+>Prev</A
+></TD
+><TD
+WIDTH="80%"
+ALIGN="center"
+VALIGN="bottom"
+></TD
+><TD
+WIDTH="10%"
+ALIGN="right"
+VALIGN="bottom"
+><A
+HREF="r1593.html"
+>Next</A
+></TD
+></TR
+></TABLE
+><HR
+ALIGN="LEFT"
+WIDTH="100%"></DIV
+><H1
+>keyring</H1
+><DIV
+CLASS="REFNAMEDIV"
+><A
+NAME="AEN1575"
+></A
+><H2
+>Name</H2
+>keyring &#8212; add a keyring to the list of keyrings</DIV
+><DIV
+CLASS="REFSYNOPSISDIV"
+><A
+NAME="AEN1578"
+></A
+><TABLE
+BORDER="0"
+BGCOLOR="#E0E0E0"
+WIDTH="100%"
+><TR
+><TD
+><PRE
+CLASS="SYNOPSIS"
+><SPAN
+CLASS="OPTION"
+>keyring</SPAN
+> <TT
+CLASS="REPLACEABLE"
+><I
+>file</I
+></TT
+></PRE
+></TD
+></TR
+></TABLE
+></DIV
+><DIV
+CLASS="REFSECT1"
+><A
+NAME="AEN1582"
+></A
+><H2
+>Description</H2
+><P
+>Adds <TT
+CLASS="REPLACEABLE"
+><I
+>file</I
+></TT
+> to the list of
+keyrings used during processings.
+If  <TT
+CLASS="REPLACEABLE"
+><I
+>file</I
+></TT
+> begins with
+a tilde and a slash, these are replaced by the HOME directory.
+If the filename does not contain a slash, it is assumed to be
+in the home directory.
+The home directory is ``~/.gnupg'' if the option
+<A
+HREF="r1616.html"
+><SPAN
+CLASS="OPTION"
+>homedir</SPAN
+></A
+> is not used.</P
+><P
+>The filename <TT
+CLASS="REPLACEABLE"
+><I
+>file</I
+></TT
+> may
+also be prefixed with a scheme.
+The scheme ``gnupg-ring:'' makes the specified file the
+default keyring.
+The scheme ``gnupg-gdbm:'' makes the specified file the
+GDBM ring.
+It may be useful to use these schemes together with the option
+<A
+HREF="r1606.html"
+><SPAN
+CLASS="OPTION"
+>no-default-keyring</SPAN
+></A
+>.</P
+></DIV
+><DIV
+CLASS="NAVFOOTER"
+><HR
+ALIGN="LEFT"
+WIDTH="100%"><TABLE
+WIDTH="100%"
+BORDER="0"
+CELLPADDING="0"
+CELLSPACING="0"
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+><A
+HREF="r1564.html"
+>Prev</A
+></TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="book1.html"
+>Home</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+><A
+HREF="r1593.html"
+>Next</A
+></TD
+></TR
+><TR
+><TD
+WIDTH="33%"
+ALIGN="left"
+VALIGN="top"
+>skip-verify</TD
+><TD
+WIDTH="34%"
+ALIGN="center"
+VALIGN="top"
+><A
+HREF="r1172.html"
+>Up</A
+></TD
+><TD
+WIDTH="33%"
+ALIGN="right"
+VALIGN="top"
+>secret-keyring</TD
+></TR
+></TABLE
+></DIV
+></BODY
+></HTML
+>
