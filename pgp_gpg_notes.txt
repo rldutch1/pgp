@@ -50,6 +50,11 @@ Encrypt to a recipient.
 
 	gpg -e -r recipient -s filename
 
+Use -u to specify the secret key to be used, and -r to specify the public key of the recipient.
+  As an example: gpg -e -u "Billy Bob" -r "Nancy Bob" mydata.tar
+  gpg -e -u "Sender User Name" -r "Receiver User Name" somefile
+
+
 Decrypt a message in standard out (stout).
   gpg
   You will see a message similar to this: gpg: Go ahead and type your message ...
@@ -309,7 +314,7 @@ In order to delete a public key you type:
 
 For deleting a secret key you type:
 
-  gpg --delete-secret-key
+  gpg --delete-secret-key  (You have to delete the private key before deleting the public key)
 
 There is one more important command that is relevant for working with keys.
 
