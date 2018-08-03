@@ -558,3 +558,6 @@ There is a graphical user interface for GnuPG called GPG Privacy Assistant (GPA)
   sudo dnf -y install gpa
 
 On Fedora Linux, the passphrase cache timeout was 300 seconds (5 minutes). I couldn't find where I could change that setting. I ended up installing dconf-editor and I was able to change the passphrase cache. I added screenshots (dconf-editor_settings##.png.
+
+I installed Open GnuPG on my Mac using: sudo port install gnupg2
+I like it a lot better thant the GPG Suite that I was previously using because I can encrypt and decrypt from an SSH session without the GUI password prompt preventing me from decrypting something.
