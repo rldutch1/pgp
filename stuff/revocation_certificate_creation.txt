@@ -1,0 +1,53 @@
+
+gpg --gen-revoke user@example.com > revoke.rob.holland.com.asc
+
+sec  dsa1024/44BB7ABDF9053B2A 2003-03-28 User Example <user@example.com>
+
+Create a revocation certificate for this key? (y/N) y
+Please select the reason for the revocation:
+  0 = No reason specified
+  1 = Key has been compromised
+  2 = Key is superseded
+  3 = Key is no longer used
+  Q = Cancel
+(Probably you want to select 1 here)
+Your decision? 1
+Enter an optional description; end it with an empty line:
+> This key need to be revoked immediately
+>
+Reason for revocation: Key has been compromised
+This key need to be revoked immediately!
+Is this okay? (y/N)
+
+┌────────────────────────────────────────────────────────────────┐
+│ Please enter the passphrase to unlock the OpenPGP secret key:  │
+│ "User Example <user@example.com>"                              │
+│ 1024-bit DSA key, ID 44BB7ABDF9053B2A,                         │
+│ created 2003-03-28.                                            │
+│                                                                │
+│                                                                │
+│ Passphrase: __________________________________________________ │
+│                                                                │
+│         <OK>                                    <Cancel>       │
+└────────────────────────────────────────────────────────────────┘
+
+┌────────────────────────────────────────────────────────────────┐
+│ Please enter the passphrase to unlock the OpenPGP secret key:  │
+│ "User Example <user@example.com>"                              │
+│ 1024-bit DSA key, ID 44BB7ABDF9053B2A,                         │
+│ created 2003-03-28.                                            │
+│                                                                │
+│                                                                │
+│ Passphrase: **************____________________________________ │
+│                                                                │
+│         <OK>                                    <Cancel>       │
+└────────────────────────────────────────────────────────────────┘
+
+ASCII armored output forced.
+Revocation certificate created.
+
+Please move it to a medium which you can hide away; if Mallory gets
+access to this certificate he can use it to make your key unusable.
+It is smart to print this certificate and store it away, just in case
+your media become unreadable.  But have some caution:  The print system of
+your machine might store the data and make it available to others!
