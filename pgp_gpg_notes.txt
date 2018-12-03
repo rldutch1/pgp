@@ -327,7 +327,7 @@ Revoke a Key.
 
 	gpg --gen-revoke THEKEYID > revoked.key
 
-	This creates a revocation certificate. To be able to do this, you need a secret key, else anyone could revoke your certificate. This has one disadvantage. If I do not know the passphrase the key has become useless. But I cannot revoke the key! To overcome this problem it is wise to create a revoke license when you create a key pair. And if you do so, keep it safe! This can be on disk, paper, etc. Make sure that this certificate will not fall into wrong hands!!!! If you don't someone else can issue the revoke certificate for your key and make it useless.
+	This creates a revocation certificate. To be able to do this, you need a secret key, otherwise anyone could revoke your certificate. This has one disadvantage. If you do not know the passphrase for the secret key, the revocation key will become useless and you cannot revoke the secret key! To overcome this problem it is wise to create a revoke license when you create a key pair. And if you do so, keep it safe! This can be on disk, paper, etc. Make sure that this certificate will not fall into wrong hands!!!! If you don't someone else can issue the revoke certificate for your key and make it useless.
 
   You will need to enter the revoke reason for the key and an optional comment.
 
@@ -345,6 +345,9 @@ List all the keys:
 
 	This will show you the HEX key IDs and other information.
 	gpg --list-keys
+
+  To show the "Short Key" ID.
+  gpg -K --with-fingerprint --with-colons | grep "sec" | cut -f5 -d ':'
 
 List all the keys and see the signatures as well type:
 
@@ -543,6 +546,8 @@ esac
 To send your public key to a keyserver:
   gpg --keyserver the.keyserver.name.com --send-keys YOURKEYID
   Example: gpg --keyserver keyserver.ubuntu.com --send-keys 5DD98B3E
+  Example: gpg --keyserver hkp://pgp.mit.edu --send-key YOURKEYID
+  Example: gpg --keyserver hkps.pool.sks-keyservers.net --send-key YOURKEYID
 
 To receive a public key from a keyserver:
   gpg --keyserver the.keyserver.name.com --recv-keys THEKEYID
@@ -560,5 +565,4 @@ There is a graphical user interface for GnuPG called GPG Privacy Assistant (GPA)
 On Fedora Linux, the passphrase cache timeout was 300 seconds (5 minutes). I couldn't find where I could change that setting. I ended up installing dconf-editor and I was able to change the passphrase cache. I added screenshots (dconf-editor_settings##.png.
 
 I installed Open GnuPG on my Mac using: sudo port install gnupg2
-I like it a lot better thant the GPG Suite that I was previously using because I can encrypt and decrypt from an SSH session without the GUI password prompt preventing me from decrypting something. I have also discovered that I no longer seem to be able to use the command 'gpg < encryptedfile'. I get a message that says it doesn't understand what I am trying to do. I actually have to paste in the encrypted content and press control+d. 
-
+I like it a lot better thant the GPG Suite that I was previously using because I can encrypt and decrypt from an SSH session without the GUI password prompt preventing me from decrypting something. I have also discovered that I no longer seem to be able to use the command 'gpg < encryptedfile'. I get a message that says it doesn't understand what I am trying to do. I actually have to paste in the encrypted content and press control+d.
