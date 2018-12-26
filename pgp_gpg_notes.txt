@@ -89,6 +89,13 @@ Use -u to specify the secret key to be used, and -r to specify the public key of
 Password encrypt and sign a file:
 	gpg -c -s filename
 
+Password encrypt and sign a message that can be decrypted by passphrase or secret key:
+	gpg -c --sign --encrypt filename
+
+	or
+
+	gpg -c -s -e filename
+
 UUEncode a file before ascii encrypting:
 	uuencode filename filename > filename.uue
 	gpg -a -e filename.uue
