@@ -5,3 +5,9 @@ change gpg-cache-method to idle or timeout.
 change gpg-cache-ttl to the number of seconds you want the passphrase to be cached.
 Restart the gnome-keyring daemon $ gnome-keyring-daemon -r
 
+idle means that the timer is reset each time you use the key before timeout is reached. timeout means that simply the time elapsed since entering the passphrase is considered.
+
+This only works for GPG-keys. Passphrases for SSH-keys are still cached until the end of the session.
+
+Source: https://askubuntu.com/questions/340809/how-can-i-adjust-the-default-passphrase-caching-duration-for-gpg-pgp-ssh-keys
+
