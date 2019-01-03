@@ -1,0 +1,7 @@
+Change the cache timeout:
+Launch dconf-editor.
+Navigate to desktop - gnome - crypto - cache.
+change gpg-cache-method to idle or timeout.
+change gpg-cache-ttl to the number of seconds you want the passphrase to be cached.
+Restart the gnome-keyring daemon $ gnome-keyring-daemon -r
+
