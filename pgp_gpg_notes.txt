@@ -1,6 +1,8 @@
 Encryption / Decryption
 
 The GNU Privacy Handbook - https://www.gnupg.org/gph/en/manual/book1.html
+Archlinux Wiki GnuPG - https://wiki.archlinux.org/index.php/GnuPG
+GnuPG Website - https://www.gnupg.org
 
 Youtube Videos:
   GnuPG Part One https://www.youtube.com/watch?v=IF-MchgZ2Os
@@ -573,3 +575,11 @@ On Fedora Linux, the passphrase cache timeout was 300 seconds (5 minutes). I cou
 
 I installed Open GnuPG on my Mac using: sudo port install gnupg2
 I like it a lot better thant the GPG Suite that I was previously using because I can encrypt and decrypt from an SSH session without the GUI password prompt preventing me from decrypting something. I have also discovered that I no longer seem to be able to use the command 'gpg < encryptedfile'. I get a message that says it doesn't understand what I am trying to do. I actually have to paste in the encrypted content and press control+d.
+
+gpgconf:
+  gpgconf --kill gpg-agent
+  gpgconf --launch gpg-agent
+
+	gnome-keyring-daemon -r
+
+gpg-connect-agent
