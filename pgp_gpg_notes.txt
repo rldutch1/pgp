@@ -347,6 +347,34 @@ Revoke a Key.
 
   Next, you will have send the revoked key to the key server. This is the same method as sending a normal key except this one has been revoked. When the server receives the revoked key, it will be removed from the server.
 
+Remove/Revoke a specific email address from your key.
+	gpg --edit-key 01234567
+	uid 4 (This is the uid of the email address that you want to revoke).
+	revuid
+		Really revoke this user ID? (y/N) y
+		Please select the reason for the revocation:
+  	0 = No reason specified
+  	4 = User ID is no longer valid
+  	Q = Cancel
+		(Probably you want to select 4 here)
+		Your decision? 4
+		Enter an optional description; end it with an empty line:
+		>
+		Reason for revocation: User ID is no longer valid
+		(No description given)
+		Is this okay? (y/N) y
+
+		You need a passphrase to unlock the secret key for user: "John Doe <john@doe.tld>"
+		[ultimate] (1). John Doe <john@doe.tld>
+		[ revoked] (2)  John Doe (Corp) <john.doe@corp.tld>
+
+		gpg> save
+Next, send your updated key to the keyservers.
+	gpg --send-keys 01234567
+	gpg: sending key 01234567 to hkp server keys.gnupg.net
+
+	gpg --list-keys 01234567
+
 Key Administration:
 With the GnuPG system comes a file that acts as some kind of database. In this file all data regarding keys with the information that comes with the keys is stored.
 
