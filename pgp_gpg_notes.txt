@@ -85,9 +85,17 @@ Encrypt to a recipient.
 	gpg -e -r recipient -s filename
 
 Use -u to specify the secret key to be used, and -r to specify the public key of the recipient.
-    As an example: gpg -e -u "Billy Bob" -r "Nancy Bob" mydata.tar
+**Note: This doesn't seem to work when you have a default sender and recipient key established in gpg.conf.
+    
     gpg -e -u "Sender User Name" -r "Receiver User Name" somefile
-
+    Example 1: gpg -e -u "me@example.com" -r "you@example.com" -r "them@example.com" somefile
+    
+    Example 2:
+    gpg -e -u "Billy Bob" -r "Nancy Bob" mydata.tar
+    
+    Example 3:
+		gpg -s --default-key ABCD1234 -ea yyy.txt
+		
 Password encrypt and sign a file:
 	gpg -c -s filename
 
@@ -347,6 +355,34 @@ Revoke a Key.
 
   Next, you will have send the revoked key to the key server. This is the same method as sending a normal key except this one has been revoked. When the server receives the revoked key, it will be removed from the server.
 
+Remove/Revoke a specific email address from your key.
+	gpg --edit-key 01234567
+	uid 4 (This is the uid of the email address that you want to revoke).
+	revuid
+		Really revoke this user ID? (y/N) y
+		Please select the reason for the revocation:
+  	0 = No reason specified
+  	4 = User ID is no longer valid
+  	Q = Cancel
+		(Probably you want to select 4 here)
+		Your decision? 4
+		Enter an optional description; end it with an empty line:
+		>
+		Reason for revocation: User ID is no longer valid
+		(No description given)
+		Is this okay? (y/N) y
+
+		You need a passphrase to unlock the secret key for user: "John Doe <john@doe.tld>"
+		[ultimate] (1). John Doe <john@doe.tld>
+		[ revoked] (2)  John Doe (Corp) <john.doe@corp.tld>
+
+		gpg> save
+Next, send your updated key to the keyservers.
+	gpg --send-keys 01234567
+	gpg: sending key 01234567 to hkp server keys.gnupg.net
+
+	gpg --list-keys 01234567
+
 Key Administration:
 With the GnuPG system comes a file that acts as some kind of database. In this file all data regarding keys with the information that comes with the keys is stored.
 
@@ -415,12 +451,94 @@ https://github.com/rldutch1/pgp/blob/master/commandline_switches.html
 Here is a PGP function that I have created and use on my Mac and Linux computers (it works on Windows too with Git or Cygwin installed). I named it "pgp" so that it is different from gpg and will not conflict.
 
 pgp(){
+clear
 case $1 in
         ascii)
         echo "ASCII Encrypting... " $2
         gpg -a -e $2
         echo "..." >> $2;rm -f $2
         echo $2 " has been deleted!"
+        ;;
+        clearsign)
+        echo "Signing..." $2
+        gpg --clearsign $2
+        echo $2 " has an associated signature file!"
+        ;;
+        decrypt)
+        #gpg --decrypt $2
+        if [ ! $2 ] || [ ! $3 ]; then
+        echo "Syntax: pgp decrypt outputfile encryptedfile.asc"
+        else
+        gpg --output $2 --decrypt $3
+        fi
+        ;;
+        decrypto)
+        #gpg --decrypt $2
+        if [ ! $3 ]; then
+        echo "Syntax: pgp decrypto outputfile encryptedfile.asc"
+        else
+        gpg --output $2 --decrypt $3
+        fi
+        ;;
+        delete-keys)
+        echo "Deleting..." $2
+        gpg --delete-keys $2
+        gpg --list-keys
+        ;;
+        encrypt)
+        echo "Encrypting..." $2
+        gpg --encrypt $2
+        echo "..." > $2;rm -f $2
+        echo $2 " has been deleted!"
+        ;;
+        export)
+        echo "Exporting..." $2
+        gpg --export --armor $2 > $2.asc
+        ;;
+        fingerprint)
+        gpg --fingerprint $2
+        ;;
+        fingerprint_from_file)
+        gpg --with-fingerprint $2
+        ;;
+        import)
+        echo "Importing..." $2
+        gpg --import $2
+        echo $2 " has been imported!"
+        ;;
+        list)
+        gpg --list-keys
+        ;;
+        message)
+        cd ~/Documents/PGP/messages
+        xyzrh1=message.`date +"%Y%m%d%H%M%S%Z"`
+        vi $xyzrh1.txt; pgp ascii $xyzrh1.txt
+        ;;
+        passencrypt)
+        echo "Encrypting..." $2
+        gpg -c -s $2
+        echo $2 " has been password encrypted!"
+        ;;
+        releasecache)
+        gpgconf --kill gpg-agent;gpgconf --launch gpg-agent
+        ;;
+        receivekeys)
+        gpg --keyserver $1 --recv-keys $2
+        ;;
+        sign)
+        echo "Signing..." $2
+        gpg --sign $2
+        echo $2 " has been signed!"
+        ;;
+        sendkeys)
+        if [ ! $2 ]; then
+        echo "Example: gpg --keyserver hkp://pgp.mit.edu --send-keys 6EE89C2D"
+        else
+        gpg --keyserver $1 --send-keys $2
+        fi
+        ;;
+        update)
+        gpg --update-trustdb
         ;;
         uue)
         echo "UUEncoding..." $2
@@ -439,96 +557,42 @@ case $1 in
         echo $2 " has been deleted!"
         ;;
         uuedecrypt)
+        #echo "Decrypting..." $2
         gpg --decrypt $2 > $2.uue
         echo "Decoding..." $2
         uudecode $2.uue;
         echo "..." > $2.uue;rm -f $2.uue
         echo $2 " has been decoded!"
         ;;
-        passencrypt)
-        echo "Encrypting..." $2
-        gpg -c -s $2
-        echo $2 " has been password encrypted!"
-        ;;
-        clearsign)
-        echo "Signing..." $2
-        gpg --clearsign $2
-        echo $2 " has an associated signature file!"
-        ;;
-        sign)
-        echo "Signing..." $2
-        gpg --sign $2
-        echo $2 " has been signed!"
-        ;;
         verify)
         echo "Signing..." $2
         gpg --verify $2
         echo $2 " verify status!"
         ;;
-        decrypto)
-        #gpg --decrypt $2
-        if [ ! $3 ]; then
-        echo "Syntax: pgp decrypto outputfile encryptedfile.asc"
-        else
-        gpg --output $2 --decrypt $3
-        fi
-        ;;
-        decrypt)
-        if [ ! $2 ] ; then
-        echo "Syntax: pgp decrypt encryptedfile.asc"
-        else
-        gpg --decrypt $2
-        fi
-        ;;
-        encrypt)
-        echo "Encrypting..." $2
-        gpg --encrypt $2
-        echo "..." > $2;rm -f $2
-        echo $2 " has been deleted!"
-        ;;
-        import)
-        echo "Importing..." $2
-        gpg --import $2
-        echo $2 " has been imported!"
-        ;;
-        list)
-        gpg --list-keys
-        ;;
-        fingerprint)
-        gpg --fingerprint $2
-        ;;
-        fingerprint_from_file)
-        gpg --with-fingerprint $2
-        ;;
-        delete-keys)
-        echo "Deleting..." $2
-        gpg --delete-keys $2
-        gpg --list-keys
-        ;;
-	message)
-	cd ~/Documents/PGP/messages
-	xyzrh1=message.`date +"%Y%m%d%H%M%S%Z"`
-	vi $xyzrh1.txt; pgp ascii $xyzrh1.txt
-	;;
         *)
         message00="gpg --edit-key 5DD98B3E"
-      	message01="pgp ascii textfile"
-      	message02="pgp clearsign textfile"
-      	message03="pgp decrypt encryptedfile.tar.gpg"
-      	message04="pgp decrypto outputfile.tar encryptedfile.tar.gpg"
-      	message05="pgp delete-keys 5DD98B3E"
-      	message06="pgp encrypt filename"
-      	message07="pgp fingerprint 5DD98B3E"
-      	message08="pgp fingerprint_from_file file_with_key"
-      	message09="pgp import filename.asc"
-      	message10="pgp list"
-      	message11="pgp message"
-      	message12="pgp passencrypt textfile"
-      	message13="pgp sign textfile"
-      	message14="pgp uue filename"
-      	message15="pgp uuegpg filename"
-      	message16="pgp uuedecrypt filename"
-      	message17="pgp verify filename"
+      	message01="pgp ascii textfile  (gpg -a -e thefilename)"
+      	message02="pgp clearsign textfile  (gpg --clearsign thefilename)"
+      	message03="pgp decrypt encryptedfile.tar.gpg  (gpg -o outputfile -d encryptedfile)"
+      	message04="pgp decrypto outputfile.tar encryptedfile.tar.gpg  (gpg -o outputfile -d encryptedfile)"
+      	message05="pgp delete-keys 5DD98B3E  (gpg --delete-keys keyname)"
+      	message06="pgp encrypt filename  (gpg --encrypt thefilename)"
+      	message07="pgp export keyname  (gpg --export --armor thekeyname)"
+      	message08="pgp fingerprint 5DD98B3E  (gpg --fingerprint key)"
+      	message09="pgp fingerprint_from_file file_with_key  (gpg --with-fingerprint thefilename)"
+      	message10="pgp import filename.asc  (gpg --import keyfile)"
+      	message11="pgp list  (gpg --list-keys)"
+      	message12="pgp message"
+      	message13="pgp passencrypt textfile  (gpg -c -s thefilename)"
+      	message14="pgp receivekeys theservername thekeyname (gpg --keyserver keyserver.ubuntu.com --recv-keys 6EE89C2D)"
+      	message15="pgp releasecache (gpgconf --kill gpg-agent;gpgconf --launch gpg-agent)"
+      	message16="pgp sendkeys theservername thekeyname  (gpg --keyserver hkp://pgp.mit.edu --send-keys 6EE89C2D)"
+      	message17="pgp sign textfile  (gpg --sign thefilename)"
+      	message18="pgp update (gpg --update-trustdb)"
+      	message19="pgp uue filename (uuencode thefilename thefilename > thefilename.uue;gpg -a -e thefilename.uue)"
+      	message20="pgp uuedecrypt filename  (gpg --decrypt thefilename > thefilename.uue;uudecode thefilename.uue)"
+      	message21="pgp uuegpg filename (uuencode thefilename thefilename > thefilename.uue;gpg --encrypt thefilename.uue)"
+      	message22="pgp verify filename  (gpg --verify signaturefile)"
         echo $message00
         echo $message01
         echo $message02
@@ -547,6 +611,11 @@ case $1 in
         echo $message15
         echo $message16
         echo $message17
+        echo $message18
+        echo $message19
+        echo $message20
+        echo $message21
+        echo $message22
         echo " "
    ;;
 esac
