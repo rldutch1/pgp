@@ -94,7 +94,7 @@ Use -u to specify the secret key to be used, and -r to specify the public key of
     gpg -e -u "Billy Bob" -r "Nancy Bob" mydata.tar
     
     Example 3:
-		gpg -s --default-key ABCD1234 -ea yyy.txt
+    gpg -s --default-key ABCD1234 -ea yyy.txt
 		
 Password encrypt and sign a file:
 	gpg -c -s filename
@@ -388,11 +388,14 @@ With the GnuPG system comes a file that acts as some kind of database. In this f
 
 List all the keys:
 
-	This will show you the HEX key IDs and other information.
+	This will show you the key IDs and other information.
 	gpg --list-keys
 
   To show the "Short Key" ID.
   gpg -K --with-fingerprint --with-colons | grep "sec" | cut -f5 -d ':'
+
+  To show the "HEX Key" ID (last 16 characters with 0x prepended).
+  gpg -K --with-fingerprint --with-colons | grep "sec" | cut -f5 -d ':'|awk '{print "0x" $1}'
 
 List all the keys and see the signatures as well type:
 
