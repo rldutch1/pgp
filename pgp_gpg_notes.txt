@@ -491,9 +491,14 @@ case $1 in
         echo "..." > $2;rm -f $2
         echo $2 " has been deleted!"
         ;;
-        export)
-        echo "Exporting..." $2
+        exportpublic)
+        echo "Exporting Public Key..." $2
         gpg --export --armor $2 > $2.asc
+        ;;
+        exportprivate)
+        echo "Exporting PRIVATE KEY..." $2
+        gpg --export --armor $2 > $2.asc
+        gpg --export-secret-keys --armor $2 >> $2.asc
         ;;
         fingerprint)
         gpg --fingerprint $2
@@ -523,7 +528,7 @@ case $1 in
         gpgconf --kill gpg-agent;gpgconf --launch gpg-agent
         ;;
         receivekeys)
-        gpg --keyserver $1 --recv-keys $2
+        gpg --keyserver $2 --recv-keys $3
         ;;
         sign)
         echo "Signing..." $2
@@ -534,7 +539,7 @@ case $1 in
         if [ ! $2 ]; then
         echo "Example: gpg --keyserver hkp://pgp.mit.edu --send-keys 6EE89C2D"
         else
-        gpg --keyserver $1 --send-keys $2
+        gpg --keyserver $2 --send-keys $3
         fi
         ;;
         update)
