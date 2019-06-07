@@ -659,6 +659,8 @@ https://security.stackexchange.com/questions/103034/gnupg-decryption-not-asking-
 
 Old versions of GnuPG uses the gpg-agent, which caches the passphrase for a given time. Use the option --no-use-agent or add a line no-use-agent to ~/.gnupg/gpg.conf to prevent using the agent.
 
+Note: --no-use-agent is obsolete in gpg2 and has no effect.
+
 Removing the passphrase cacheing and setting it to 1 second. I haven't tried this but it has a green checkmark on stackexchange.
 
 Edit: ~/.gnupg/gpg-agent.conf
