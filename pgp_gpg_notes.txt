@@ -653,3 +653,20 @@ gpgconf:
 	gnome-keyring-daemon -r
 
 gpg-connect-agent
+
+How can I force the system to ask the passphrase every time?
+https://security.stackexchange.com/questions/103034/gnupg-decryption-not-asking-for-passphrase
+
+Old versions of GnuPG uses the gpg-agent, which caches the passphrase for a given time. Use the option --no-use-agent or add a line no-use-agent to ~/.gnupg/gpg.conf to prevent using the agent.
+
+Removing the passphrase cacheing and setting it to 1 second. I haven't tried this but it has a green checkmark on stackexchange.
+
+Edit: ~/.gnupg/gpg-agent.conf
+Add: 
+	default-cache-ttl 1
+	max-cache-ttl 1
+
+Reload the gpg agent: 
+	echo RELOADAGENT | gpg-connect-agent
+
+
