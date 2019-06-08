@@ -671,4 +671,21 @@ Add:
 Reload the gpg agent: 
 	echo RELOADAGENT | gpg-connect-agent
 
+or
 
+Type: gpg-connect-agent
+	At the prompt type: RELOADAGENT
+	Response should be: OK
+
+	At the prompt type: BYE
+	Reponse should be: OK closing connection
+
+Restart the gpg agent:
+Type: gpg-connect-agent
+	At the prompt type: KILLAGENT
+	Reponse should be: OK closing connection
+
+
+List PGP/GPG directories:
+	gpgconf --list-dirs
+	
