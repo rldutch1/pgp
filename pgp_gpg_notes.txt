@@ -689,3 +689,21 @@ Type: gpg-connect-agent
 List PGP/GPG directories:
 	gpgconf --list-dirs
 	
+gpg options --debug-level guru --debug-all --verbose
+gpg --debug-level guru --debug-all --verbose
+
+
+I was having trouble importing my private key because it was in an older version of GPG. 
+I was getting errors telling me that I could not 
+	gpg: error building skey array: No such file or directory
+	gpg import error sending to agent no such file or directory
+	gpg: error building skey array: permission denied
+	gpg: decryption failed: no secret key
+	
+I had to decrypt my passphrase encrypted key using a user that did not have GPG enabled (root).
+I also renamed my .gnupg directory and ran gpg again so that it would get created. Inside that 
+directory I had to manually create the private-keys-v1.d directory so the "No such file or directory" error would
+go away.
+
+I was still having issues and kept seeing a message telling me no private key present whenever I tried to decrypt something.
+I ended up restoring the .gnupg folder from a backup and restarting the gpg agent. 
