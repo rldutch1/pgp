@@ -1,0 +1,107 @@
+https://blog.sleeplessbeastie.eu/2019/01/09/how-to-backup-or-restore-luks-header/
+
+Learn how to create LUKS header backup and restore it in case of emergency.
+
+Display LUKS header information.
+
+$ sudo cryptsetup luksDump /dev/sdb1 
+
+LUKS header information for /dev/sdb1
+
+Version:        1
+Cipher name:    aes
+Cipher mode:    xts-plain64
+Hash spec:      sha256
+Payload offset: 4096
+MK bits:        256
+MK digest:      eb 33 45 89 95 2b 67 dd 65 6d 17 d3 ed 7d 05 c4 84 58 5f fc 
+MK salt:        b7 0b c3 96 0e ab 70 1b f0 28 9f 39 63 a4 37 95 
+                16 e0 61 e6 98 ab fc c1 18 db 1a 36 bc 00 bd 13 
+MK iterations:  151879
+UUID:           ac32a865-2716-43e3-8db9-798d4279a3a3
+
+Key Slot 0: ENABLED
+        Iterations:             2430070
+        Salt:                   10 a5 7d 29 c8 7f 21 d8 15 ca 42 08 01 a5 79 0c 
+                                d4 d7 5b 87 c3 14 cc 33 75 ec ec ba 71 26 8c 67 
+        Key material offset:    8
+        AF stripes:             4000
+Key Slot 1: DISABLED
+Key Slot 2: DISABLED
+Key Slot 3: DISABLED
+Key Slot 4: DISABLED
+Key Slot 5: DISABLED
+Key Slot 6: DISABLED
+Key Slot 7: DISABLED
+
+Create LUKS header backup.
+
+$ sudo cryptsetup luksHeaderBackup /dev/sdb1 --header-backup-file luks_backup_sdb1
+
+Display backup information.
+
+$ sudo file luks_backup_sdb1 
+
+luks_backup_sdb1: LUKS encrypted file, ver 1 [aes, xts-plain64, sha256] UUID: ac32a865-2716-43e3-8db9-798d4279a3a3
+
+$ sudo stat luks_backup_sdb1 
+
+  File: luks_backup_sdb1
+  Size: 1052672         Blocks: 2056       IO Block: 4096   regular file
+Device: fd01h/64769d    Inode: 13243082    Links: 1
+Access: (0400/-r--------)  Uid: (    0/    root)   Gid: (    0/    root)
+Access: 2018-12-11 23:35:17.003130528 +0100
+Modify: 2018-12-11 23:35:00.183111603 +0100
+Change: 2018-12-11 23:35:00.183111603 +0100
+ Birth: -
+
+Display stored LUKS header information.
+
+$ sudo cryptsetup luksDump luks_backup_sdb1
+
+LUKS header information for luks_backup_sdb1
+
+Version:        1
+Cipher name:    aes
+Cipher mode:    xts-plain64
+Hash spec:      sha256
+Payload offset: 4096
+MK bits:        256
+MK digest:      eb 33 45 89 95 2b 67 dd 65 6d 17 d3 ed 7d 05 c4 84 58 5f fc
+MK salt:        b7 0b c3 96 0e ab 70 1b f0 28 9f 39 63 a4 37 95
+                16 e0 61 e6 98 ab fc c1 18 db 1a 36 bc 00 bd 13
+MK iterations:  151879
+UUID:           ac32a865-2716-43e3-8db9-798d4279a3a3
+
+Key Slot 0: ENABLED
+        Iterations:             2430070
+        Salt:                   10 a5 7d 29 c8 7f 21 d8 15 ca 42 08 01 a5 79 0c
+                                d4 d7 5b 87 c3 14 cc 33 75 ec ec ba 71 26 8c 67
+        Key material offset:    8
+        AF stripes:             4000
+Key Slot 1: DISABLED
+Key Slot 2: DISABLED
+Key Slot 3: DISABLED
+Key Slot 4: DISABLED
+Key Slot 5: DISABLED
+Key Slot 6: DISABLED
+Key Slot 7: DISABLED
+
+Restore LUKS header information.
+
+$ sudo cryptsetup luksHeaderRestore /dev/sdb1 --header-backup-file luks_backup_sdb1
+
+WARNING!
+========
+Device /dev/sdb1 already contains LUKS header. Replacing header will destroy existing keyslots.
+
+Are you sure? (Type uppercase yes): YES
+
+Store it securely as created LUKS header backup can be used to perform brute-force attack.
+
+total 2.0M
+drwxr-xr-x 2 rob  rob  4.0K Jun 10 00:00 ./
+drwxrwxr-x 3 rob  rob  4.0K Jun  9 23:53 ../
+-rw-r--r-- 1 rob  rob    83 Jun  9 23:54 Create_luks_header_backup.txt
+-r-------- 1 root root 2.0M Jun 10 00:00 luks_backup_sda3
+
