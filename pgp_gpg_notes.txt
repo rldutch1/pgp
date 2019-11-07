@@ -393,9 +393,11 @@ List all the keys:
 
   To show the "Short Key" ID.
   gpg -K --with-fingerprint --with-colons | grep "sec" | cut -f5 -d ':'
+  gpg -k --with-fingerprint --with-colons | grep "pub" | cut -f5 -d ':'
 
   To show the "HEX Key" ID (last 16 characters with 0x prepended).
   gpg -K --with-fingerprint --with-colons | grep "sec" | cut -f5 -d ':'|awk '{print "0x" $1}'
+  gpg -k --with-fingerprint --with-colons | grep "pub" | cut -f5 -d ':'|awk '{print "0x" $1}'
 
 List all the keys and see the signatures as well type:
 
