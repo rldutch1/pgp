@@ -470,8 +470,9 @@ case $1 in
         echo $2 " has an associated signature file!"
         ;;
         decrypt)
-        if [ ! $3 ]; then
-        echo "Syntax: pgp decrypt outputfile.txt encryptedfile.txt.asc"
+        #gpg --decrypt $2
+        if [ ! $2 ] || [ ! $3 ]; then
+        echo "Syntax: pgp decrypt outputfile encryptedfile.asc"
         else
         gpg --output $2 --decrypt $3
         fi
@@ -510,6 +511,9 @@ case $1 in
         list)
         gpg --list-keys
         ;;
+        listdirs)
+        gpgconf --list-dirs
+        ;;
         message)
         cd ~/Documents/PGP/messages
         xyzrh1=message.`date +"%Y%m%d%H%M%S%Z"`
@@ -525,6 +529,9 @@ case $1 in
         ;;
         receivekeys)
         gpg --keyserver $2 --recv-keys $3
+        ;;
+        revoke_key)
+        gpg --gen-revoke $2 > revoke.$2.asc
         ;;
         sign)
         echo "Signing..." $2
@@ -574,27 +581,28 @@ case $1 in
         message00="gpg --edit-key 5DD98B3E"
       	message01="pgp ascii textfile  (gpg -a -e thefilename)"
       	message02="pgp clearsign textfile  (gpg --clearsign thefilename)"
-      	message03="pgp decrypt encryptedfile.tar.gpg  (gpg -o outputfile -d encryptedfile)"
-      	message04="pgp decrypto outputfile.tar encryptedfile.tar.gpg  (gpg -o outputfile -d encryptedfile)"
-      	message05="pgp delete-keys 5DD98B3E  (gpg --delete-keys keyname)"
-      	message06="pgp encrypt filename  (gpg --encrypt thefilename)"
-      	message07="pgp exportpublic keyname  (gpg --export --armor thekeyname)"
-      	message08="pgp exportprivate keyname  (gpg --export-secret-keys --armor ABCD1234 >> ABCD1234.asc)"
-      	message09="pgp fingerprint 5DD98B3E  (gpg --fingerprint key)"
-      	message10="pgp fingerprint_from_file file_with_key  (gpg --with-fingerprint thefilename)"
-      	message11="pgp import filename.asc  (gpg --import keyfile)"
-      	message12="pgp list  (gpg --list-keys)"
+      	message03="pgp decrypt outputfile.tar encryptedfile.tar.gpg  (gpg -o outputfile -d encryptedfile)"
+      	message04="pgp delete-keys 5DD98B3E  (gpg --delete-keys keyname)"
+      	message05="pgp encrypt filename  (gpg --encrypt thefilename)"
+      	message06="pgp exportpublic keyname  (gpg --export --armor thekeyname)"
+      	message07="pgp exportprivate keyname  (gpg --export-secret-keys --armor ABCD1234 >> ABCD1234.asc)"
+      	message08="pgp fingerprint 5DD98B3E  (gpg --fingerprint key)"
+      	message09="pgp fingerprint_from_file file_with_key  (gpg --with-fingerprint thefilename)"
+      	message10="pgp import filename.asc  (gpg --import keyfile)"
+      	message11="pgp list  (gpg --list-keys)"
+      	message12="pgp listdirs  (gpgconf --list-dirs)"
       	message13="pgp message"
       	message14="pgp passencrypt textfile  (gpg -c -s thefilename)"
       	message15="pgp receivekeys theservername thekeyname (gpg --keyserver keyserver.ubuntu.com --recv-keys 6EE89C2D)"
       	message16="pgp releasecache (gpgconf --kill gpg-agent;gpgconf --launch gpg-agent)"
-      	message17="pgp sendkeys theservername thekeyname  (gpg --keyserver hkp://pgp.mit.edu --send-keys 6EE89C2D)"
-      	message18="pgp sign textfile  (gpg --sign thefilename)"
-      	message19="pgp update (gpg --update-trustdb)"
-      	message20="pgp uue filename (uuencode thefilename thefilename > thefilename.uue;gpg -a -e thefilename.uue)"
-      	message21="pgp uuedecrypt filename  (gpg --decrypt thefilename > thefilename.uue;uudecode thefilename.uue)"
-      	message22="pgp uuegpg filename (uuencode thefilename thefilename > thefilename.uue;gpg --encrypt thefilename.uue)"
-      	message23="pgp verify filename  (gpg --verify signaturefile)"
+      	message17="pgp revoke_key (gpg --gen-revoke thekeyname > revoke.thekeyname.asc)"
+      	message18="pgp sendkeys theservername thekeyname  (gpg --keyserver hkp://pgp.mit.edu --send-keys 6EE89C2D)"
+      	message19="pgp sign textfile  (gpg --sign thefilename)"
+      	message20="pgp update (gpg --update-trustdb)"
+      	message21="pgp uue filename (uuencode thefilename thefilename > thefilename.uue;gpg -a -e thefilename.uue)"
+      	message22="pgp uuedecrypt filename  (gpg --decrypt thefilename > thefilename.uue;uudecode thefilename.uue)"
+      	message23="pgp uuegpg filename (uuencode thefilename thefilename > thefilename.uue;gpg --encrypt thefilename.uue)"
+      	message24="pgp verify filename  (gpg --verify signaturefile)"
         echo $message00
         echo $message01
         echo $message02
@@ -619,6 +627,7 @@ case $1 in
         echo $message21
         echo $message22
         echo $message23
+        echo $message24
         echo " "
    ;;
 esac
