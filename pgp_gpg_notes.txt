@@ -718,3 +718,8 @@ go away.
 
 I was still having issues and kept seeing a message telling me no private key present whenever I tried to decrypt something.
 I ended up restoring the .gnupg folder from a backup and restarting the gpg agent. 
+
+Batch Decrypt (Not a good idea to store passphrases in a file):
+	for x in *.pgp; 
+		do gpg --batch --no-tty --yes --passphrase-fd=0 --decrypt ${x} < file_with_passphrase > ${x%%pgp}txt; 
+	done
