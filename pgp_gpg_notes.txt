@@ -409,6 +409,9 @@ To see the fingerprints type:
 
 	You want to see "Fingerprints" to ensure that somebody is really the person they claim (like in a telephone call). This command will result in a list of relatively small numbers.
 
+To see detailed information about a persons key, you need to have the public key file:
+	gpg --list-packets thepubkey.asc 
+	
 To list the secret keys you type:
 
 	gpg --list-secret-keys
@@ -446,6 +449,22 @@ Export your key:
 
 	Export secret key in ascii format:
 	gpg --export-secret-key -a <KEY ID>
+
+Keybase:
+Before I could import my key into Keybase, I had to update the expired subkeys and update it to SHA512:
+When I typed: keybase pgp select
+
+I would get this error message after selecting my key and entering my credentials. My key was using the older expired SHA1 algorithm.
+ERROR key generation error: no valid primary key self-signature or key(s) have expired (Signature failure in packet 1: rejecting insecure hash SHA1 (2a3b05f9bd7abb44)) (error 905)
+
+I followed the instructions on this website:
+https://github.com/keybase/client/issues/22458
+gpg --cert-digest-algo SHA512 --expert --edit-key mykeyname
+
+The expired messages went away but I still got an error saying I was using insecure hash SHA1.
+
+I finally added, "digest-algo SHA512" at the bottom of my gpg.conf file and I was able to import into Keybase.
+
 
 Source:
 https://www.gnupg.org/gph/en/manual/x110.html
