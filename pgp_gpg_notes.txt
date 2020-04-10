@@ -564,6 +564,15 @@ case $1 in
         gpg --keyserver $2 --send-keys $3
         fi
         ;;
+        showphoto)
+        if [ ! $2 ]; then
+        echo "Example:"
+        echo "showphoto 6EE89C2D"
+        echo "showphoto user@example.com"  
+        else      
+        gpg --list-options show-photos --fingerprint $2
+        fi
+        ;;
         update)
         gpg --update-trustdb
         ;;
@@ -616,12 +625,13 @@ case $1 in
       	message16="pgp releasecache (gpgconf --kill gpg-agent;gpgconf --launch gpg-agent)"
       	message17="pgp revoke_key (gpg --gen-revoke thekeyname > revoke.thekeyname.asc)"
       	message18="pgp sendkeys theservername thekeyname  (gpg --keyserver hkp://pgp.mit.edu --send-keys 6EE89C2D)"
-      	message19="pgp sign textfile  (gpg --sign thefilename)"
-      	message20="pgp update (gpg --update-trustdb)"
-      	message21="pgp uue filename (uuencode thefilename thefilename > thefilename.uue;gpg -a -e thefilename.uue)"
-      	message22="pgp uuedecrypt filename  (gpg --decrypt thefilename > thefilename.uue;uudecode thefilename.uue)"
-      	message23="pgp uuegpg filename (uuencode thefilename thefilename > thefilename.uue;gpg --encrypt thefilename.uue)"
-      	message24="pgp verify filename  (gpg --verify signaturefile)"
+      	message19="pgp showphoto 6EE89C2D (gpg --list-options show-photos --fingerprint 6EE89C2D)"
+      	message20="pgp sign textfile  (gpg --sign thefilename)"
+      	message21="pgp update (gpg --update-trustdb)"
+      	message22="pgp uue filename (uuencode thefilename thefilename > thefilename.uue;gpg -a -e thefilename.uue)"
+      	message23="pgp uuedecrypt filename  (gpg --decrypt thefilename > thefilename.uue;uudecode thefilename.uue)"
+      	message24="pgp uuegpg filename (uuencode thefilename thefilename > thefilename.uue;gpg --encrypt thefilename.uue)"
+      	message25="pgp verify filename  (gpg --verify signaturefile)"
         echo $message00
         echo $message01
         echo $message02
@@ -647,6 +657,7 @@ case $1 in
         echo $message22
         echo $message23
         echo $message24
+        echo $message25
         echo " "
    ;;
 esac
