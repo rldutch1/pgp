@@ -63,6 +63,7 @@ This is a special version of the --encrypt command. The command expects the file
 Encrypt multiple files. This option may be combined with --sign.
 
  	gpg --encrypt-files file1 file2 file3
+ 	gpg -r 'brothers' --encrypt-files *.gz
 
 Encrypt with symmetric cipher only. This command asks for a passphrase. (May also be combined with --sign -- see GnuPG 1.0.7 released.)
 
